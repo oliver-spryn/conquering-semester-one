@@ -1,8 +1,12 @@
 #include <iostream>
+#include "Game.h"
 using namespace std;
 
 int main() {
-	cout << "HI";
+	Game risk;
+
+	risk.setup();
+	risk.play();
 
 	return 0;
 }
