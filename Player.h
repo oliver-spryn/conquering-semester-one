@@ -10,10 +10,10 @@ using std::vector;
 class Player
 {
 public:
-	Player(string playerName);//,color namespace?);
+	Player(string playerName, int playerColor);//,color namespace?);
 private:
 	string name;
-	//color;
+	int color;
 	vector<Card> hand;
 	int activeTroops;
 	int reinforcements;

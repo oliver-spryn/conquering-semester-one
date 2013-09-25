@@ -9,7 +9,6 @@ void Game::setup()
 }
 void Game::play()
 {
-	//infinite loop
 	firstTurn();
 
 	while(true){

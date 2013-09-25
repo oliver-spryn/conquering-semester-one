@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "Player.h"
+#include "Deck.h"
 using std::vector;
 
 #ifndef GAME_H
@@ -12,8 +13,15 @@ public:
 	void setup();
 	void play();
 	void firstTurn();
+
+	void reinforcementsPhase();
+	void attackPhase();
+	void fortifyPhase();
+			//draw a card if a territory is conquered
 private:
 	vector <Player> players;
+	Deck deck;
+	//Board board;
 };
 
 #endif
