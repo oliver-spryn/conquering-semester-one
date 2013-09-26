@@ -17,7 +17,7 @@ public:
 	void reinforcementsPhase();
 	void attackPhase();
 	void fortifyPhase();
-			//draw a card if a territory is conquered
+	void endTurn();//draw a card if a territory is conquered
 private:
 	vector <Player> players;
 	Deck deck;

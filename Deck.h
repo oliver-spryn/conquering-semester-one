@@ -1,3 +1,4 @@
+#include "CardGroup.h"
 #include <vector>
 #include "Card.h"
 using std::vector;
@@ -5,12 +6,12 @@ using std::vector;
 #ifndef DECK_H
 #define DECK_H
 
-class Deck
+class Deck : public CardGroup
 {
 public:
 
 private:
-	vector<Card> deck;
+
 };
 
 #endif

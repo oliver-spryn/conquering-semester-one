@@ -23,4 +23,5 @@ void Game::play()
 void Game::firstTurn()
 {
 	//players roll die to determine order and reorder the vector of players accordingly
+	//initial troop placement
 }
