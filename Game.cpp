@@ -2,10 +2,12 @@
 
 void Game::setup()
 {
-	//get number of players
-	//set up other options
-	//populate a private containers of players
-
+    int numPlayers;    
+	cout << "Enter the number of players (2-5): ";//get number of players
+    cin >> numPlayers; //set up other options
+	for(int i=0; i < numPlayers; i++) { //populate a private containers of players
+        
+    }
 }
 void Game::play()
 {

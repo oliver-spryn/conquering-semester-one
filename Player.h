@@ -10,6 +10,7 @@ using std::vector;
 class Player
 {
 public:
+    Player();
 	Player(string playerName, int playerColor);
 	string getName() {return name;}
 	int getColor() {return color;}
@@ -23,6 +24,7 @@ private:
 	Hand hand;
 	int activeTroops;
 	int reinforcements;
+	bool terrCaptured;
 };
 
 #endif

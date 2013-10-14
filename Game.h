@@ -2,6 +2,8 @@
 #include <vector>
 #include "Player.h"
 #include "Deck.h"
+using std::cout;
+using std::cin;
 using std::vector;
 
 #ifndef GAME_H
@@ -14,7 +16,7 @@ public:
 	void play();
 	void firstTurn();
 
-	void reinforcementsPhase();
+	void reinforcementsPhase(Player currentPlayer);
 	void attackPhase();
 	void fortifyPhase();
 	void endTurn();//draw a card if a territory is conquered
