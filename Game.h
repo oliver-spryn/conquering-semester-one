@@ -16,10 +16,10 @@ public:
 	void play();
 	void firstTurn();
 
-	void reinforcementsPhase(Player currentPlayer);
-	void attackPhase();
-	void fortifyPhase();
-	void endTurn();//draw a card if a territory is conquered
+	void reinforcementsPhase(Player p);
+	void attackPhase(Player p);
+	void fortifyPhase(Player p);
+	void endTurn(Player p);//draw a card if a territory is conquered
 private:
 	vector <Player> players;
 	Deck deck;

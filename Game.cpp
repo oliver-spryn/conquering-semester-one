@@ -27,3 +27,20 @@ void Game::firstTurn()
 	//players roll die to determine order and reorder the vector of players accordingly
 	//initial troop placement
 }
+
+void Game::reinforcementsPhase(Player p) {
+    ;
+}
+void Game::attackPhase(Player p) {
+    ; // populate list of territories with # of troops in parenthesis
+    // instantiates object of type Assault that handles the battle
+        // tells you how many troops you have left after each assault
+        //asks if you want to continue assaulting
+    // if attacking player wins the battle, calls troop movement
+}
+void Game::fortifyPhase(Player p) {
+    ;
+}
+void Game::endTurn(Player p) { 
+    ;
+}
