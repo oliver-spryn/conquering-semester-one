@@ -13,18 +13,14 @@ public:
     Player();
 	Player(string playerName, int playerColor);
 	string getName() {return name;}
-	int getColor() {return color;}
-	int getActiveTroops() {return activeTroops;}
-	int getReinforcements() {return reinforcements;}
-	void changeActiveTroops(int num) {activeTroops += num;} //add or remove
-	void changeReinforcements(int num) {reinforcements += num;}
+	string getColor() {return color;}
+	vector<Territory*> getTerr();
 private:
+	Deck allCards&
 	string name;
-	int color;
+	string color;
 	Hand hand;
-	int activeTroops;
-	int reinforcements;
-	bool terrCaptured;
+	vector<Territory*> myTerr;
 };
 
 #endif
