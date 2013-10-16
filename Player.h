@@ -16,7 +16,7 @@ public:
 	string getColor() {return color;}
 	vector<Territory*> getTerr();
 private:
-	Deck allCards&
+	Deck allCards&;
 	string name;
 	string color;
 	Hand hand;
