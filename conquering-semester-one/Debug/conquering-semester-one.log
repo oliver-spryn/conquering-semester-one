@@ -1,30 +1,139 @@
-﻿Build started 10/14/2013 3:36:44 PM.
-     1>Project "C:\Users\YOUNGGG1\Dropbox\Year 3 Semester 1\Comp 322 Advanced Programming\conquering-semester-one\conquering-semester-one\conquering-semester-one.vcxproj" on node 2 (build target(s)).
-     1>InitializeBuildStatus:
+﻿Build started 10/16/2013 10:32:38 AM.
+     1>Project "C:\Users\YOUNGGG1\Dropbox\Year 3 Semester 1\Comp 322 Advanced Programming\conquering-semester-one\source\conquering-semester-one\conquering-semester-one.vcxproj" on node 2 (build target(s)).
+     1>PrepareForBuild:
+         Creating directory "C:\Users\YOUNGGG1\Dropbox\Year 3 Semester 1\Comp 322 Advanced Programming\conquering-semester-one\source\Debug\".
+       InitializeBuildStatus:
          Creating "Debug\conquering-semester-one.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\source\Game.cpp ..\source\main.cpp
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\source\Game.cpp ..\source\main.cpp BaseException.cpp Display.cpp DistributeParametersInvalid.cpp Player.cpp Territory.cpp TroopHandler.cpp TroopModifierOutOfRange.cpp
+         TroopModifierOutOfRange.cpp
+         TroopHandler.cpp
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\troophandler.h(31): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\troophandler.h(32): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\troophandler.cpp(25): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\troophandler.cpp(25): error C2572: 'TroopHandler::addTroop' : redefinition of default parameter : parameter 1
+                 c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\troophandler.h(31) : see declaration of 'TroopHandler::addTroop'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\troophandler.cpp(46): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\troophandler.cpp(46): error C2572: 'TroopHandler::delTroop' : redefinition of default parameter : parameter 1
+                 c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\troophandler.h(32) : see declaration of 'TroopHandler::delTroop'
+         Territory.cpp
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\display.h(29): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.h(13): error C2061: syntax error : identifier 'map'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.h(16): error C2065: 'Territory' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.h(16): error C2059: syntax error : '>'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.h(21): error C2065: 'Territory' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.h(21): error C2059: syntax error : '>'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.h(23): error C2143: syntax error : missing ';' before '}'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\troopmodifieroutofrange.h(3): error C2143: syntax error : missing ';' before '{'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\troopmodifieroutofrange.h(6): error C2143: syntax error : missing ';' before '}'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\troophandler.h(22): error C2143: syntax error : missing ';' before '{'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\troophandler.h(34): error C2143: syntax error : missing ';' before '}'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.h(24): error C2143: syntax error : missing ';' before '{'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.h(30): error C2065: 'Territory' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.h(30): error C2059: syntax error : '>'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.h(33): error C2065: 'Territory' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.h(33): error C2065: 't2' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.h(33): error C2143: syntax error : missing ',' before ')'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.h(34): error C2065: 'Territory' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.h(34): error C2065: 't2' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.h(34): error C2143: syntax error : missing ',' before ')'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.h(36): error C2065: 'Territory' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.h(36): error C2059: syntax error : '>'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.h(36): error C2059: syntax error : ')'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.h(36): error C2143: syntax error : missing ',' before ';'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.h(43): error C2143: syntax error : missing ';' before '}'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(15): error C2065: 'Territory' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(15): error C2065: 't2' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(15): error C2143: syntax error : missing ',' before ')'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(15): error C2143: syntax error : missing ';' before '{'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(17): error C2143: syntax error : missing ';' before '}'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(31): error C2065: 'Territory' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(31): error C2065: 't2' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(31): error C2143: syntax error : missing ',' before ')'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(31): error C2143: syntax error : missing ';' before '{'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(33): error C2143: syntax error : missing ';' before '}'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(50): error C2653: 'Territory' : is not a class or namespace name
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(50): error C2065: 'Territory' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(50): error C2059: syntax error : '>'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(50): error C2065: 'owner' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(50): error C2059: syntax error : ')'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(50): error C2275: 'Player' : illegal use of this type as an expression
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(50): error C2143: syntax error : missing ',' before ':'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(51): error C2065: 'color' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(51): error C3861: 'color': identifier not found
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(51): error C2065: 'continent' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(51): error C3861: 'continent': identifier not found
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(51): error C2065: 'name' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(51): error C3861: 'name': identifier not found
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(51): error C2065: 'tangent' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(51): error C3861: 'tangent': identifier not found
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(51): error C2065: 'owner' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(51): error C3861: 'owner': identifier not found
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(51): error C2143: syntax error : missing ',' before '{'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(51): error C2143: syntax error : missing ';' before '{'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(61): error C2653: 'Territory' : is not a class or namespace name
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(61): error C2143: syntax error : missing ';' before '{'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(63): error C2143: syntax error : missing ';' before '}'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(72): error C2653: 'Territory' : is not a class or namespace name
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(72): error C2143: syntax error : missing ';' before '{'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(74): error C2143: syntax error : missing ';' before '}'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(83): error C2653: 'Territory' : is not a class or namespace name
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(83): error C2143: syntax error : missing ';' before '{'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(85): error C2143: syntax error : missing ';' before '}'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(94): error C2653: 'Territory' : is not a class or namespace name
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(94): error C2143: syntax error : missing ';' before '{'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(96): error C2143: syntax error : missing ';' before '}'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(106): error C2653: 'Territory' : is not a class or namespace name
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(106): error C2143: syntax error : missing ';' before '{'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(107): error C2065: 'Territory' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(107): error C2059: syntax error : '>'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(107): error C2039: 'iterator' : is not a member of '`global namespace''
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(107): error C2059: syntax error : ')'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(107): error C2143: syntax error : missing ';' before '{'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(108): error C2143: syntax error : missing ';' before '{'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(110): error C2143: syntax error : missing ';' before '}'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(111): error C2143: syntax error : missing ';' before '}'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(114): error C2143: syntax error : missing ';' before '}'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(124): error C2653: 'Territory' : is not a class or namespace name
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(124): error C2143: syntax error : missing ';' before '{'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(126): error C2143: syntax error : missing ';' before '}'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(127): error C2143: syntax error : missing ';' before '}'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\territory.cpp(127): fatal error C1004: unexpected end-of-file found
+         Player.cpp
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.h(13): error C2061: syntax error : identifier 'map'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.h(16): error C2065: 'Territory' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.h(16): error C2059: syntax error : '>'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.h(21): error C2065: 'Territory' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.h(21): error C2059: syntax error : '>'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.h(23): error C2143: syntax error : missing ';' before '}'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.cpp(3): error C2065: 'map' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.cpp(3): error C2275: 'std::string' : illegal use of this type as an expression
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\xstring(2062) : see declaration of 'std::string'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.cpp(3): error C2065: 'Territory' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.cpp(3): error C2065: 'playerTerr' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.cpp(3): error C2065: 'Deck' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.cpp(3): error C2065: 'playerCards' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.cpp(3): error C2143: syntax error : missing ',' before ')'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.cpp(4): error C2143: syntax error : missing ';' before '{'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.cpp(9): error C2143: syntax error : missing ';' before '}'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.cpp(11): error C2065: 'Territory' : undeclared identifier
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.cpp(11): error C2059: syntax error : '>'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.cpp(12): error C2143: syntax error : missing ';' before '{'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.cpp(14): error C2143: syntax error : missing ';' before '}'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.cpp(15): error C2143: syntax error : missing ';' before '}'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\player.cpp(15): fatal error C1004: unexpected end-of-file found
+         DistributeParametersInvalid.cpp
+         Display.cpp
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\display.h(29): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\display.cpp(73): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+         BaseException.cpp
          main.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: '..\source\main.cpp': No such file or directory
          Game.cpp
-     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\game.cpp(17): warning C4018: '<' : signed/unsigned mismatch
+     1>c1xx : fatal error C1083: Cannot open source file: '..\source\Game.cpp': No such file or directory
          Generating Code...
-       ManifestResourceCompile:
-         All outputs are up-to-date.
-       Link:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\YOUNGGG1\Dropbox\Year 3 Semester 1\Comp 322 Advanced Programming\conquering-semester-one\Debug\conquering-semester-one.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\conquering-semester-one.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\YOUNGGG1\Dropbox\Year 3 Semester 1\Comp 322 Advanced Programming\conquering-semester-one\Debug\conquering-semester-one.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\YOUNGGG1\Dropbox\Year 3 Semester 1\Comp 322 Advanced Programming\conquering-semester-one\Debug\conquering-semester-one.lib" /MACHINE:X86 "Debug\conquering-semester-one.exe.embed.manifest.res"
-         Debug\Game.obj
-         Debug\main.obj
-       Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\conquering-semester-one.exe.embed.manifest" /manifest "Debug\conquering-semester-one.exe.intermediate.manifest"
-         All outputs are up-to-date.
-       LinkEmbedManifest:
-         All outputs are up-to-date.
-         conquering-semester-one.vcxproj -> C:\Users\YOUNGGG1\Dropbox\Year 3 Semester 1\Comp 322 Advanced Programming\conquering-semester-one\Debug\conquering-semester-one.exe
-       FinalizeBuildStatus:
-         Deleting file "Debug\conquering-semester-one.unsuccessfulbuild".
-         Touching "Debug\conquering-semester-one.lastbuildstate".
-     1>Done Building Project "C:\Users\YOUNGGG1\Dropbox\Year 3 Semester 1\Comp 322 Advanced Programming\conquering-semester-one\conquering-semester-one\conquering-semester-one.vcxproj" (build target(s)).
+     1>Done Building Project "C:\Users\YOUNGGG1\Dropbox\Year 3 Semester 1\Comp 322 Advanced Programming\conquering-semester-one\source\conquering-semester-one\conquering-semester-one.vcxproj" (build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:03.09
+Time Elapsed 00:00:04.02

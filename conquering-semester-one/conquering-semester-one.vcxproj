@@ -76,7 +76,13 @@
   <ItemGroup>
     <ClCompile Include="..\source\Game.cpp" />
     <ClCompile Include="..\source\main.cpp" />
+    <ClCompile Include="BaseException.cpp" />
+    <ClCompile Include="Display.cpp" />
+    <ClCompile Include="DistributeParametersInvalid.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Territory.cpp" />
+    <ClCompile Include="TroopHandler.cpp" />
+    <ClCompile Include="TroopModifierOutOfRange.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\Card.h" />
@@ -88,6 +94,11 @@
     <ClInclude Include="..\source\Piece.h" />
     <ClInclude Include="..\source\Player.h" />
     <ClInclude Include="..\source\Territory.h" />
+    <ClInclude Include="BaseException.h" />
+    <ClInclude Include="Display.h" />
+    <ClInclude Include="DistributeParametersInvalid.h" />
+    <ClInclude Include="TroopHandler.h" />
+    <ClInclude Include="TroopModifierOutOfRange.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
