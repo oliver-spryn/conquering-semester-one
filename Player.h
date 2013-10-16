@@ -10,17 +10,16 @@ using std::vector;
 class Player
 {
 public:
-    Player();
-	Player(string playerName, int playerColor);
+	Player(string playerName, int playerColor, map<string, Territory>& playerTerr, Deck& playerCards);
 	string getName() {return name;}
 	string getColor() {return color;}
 	vector<Territory*> getTerr();
 private:
-	Deck allCards&;
 	string name;
-	string color;
-	Hand hand;
+	int color;
+	Deck allCards&;
 	vector<Territory*> myTerr;
+	Hand hand;
 };
 
 #endif

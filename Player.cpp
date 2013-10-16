@@ -1,24 +1,14 @@
 #include "player.h"
 
-Player::Player()
+Player::Player(string playerName, int playerColor, map<string, Territory>& playerTerr, Deck& playerCards)
 {
-	allCards;
-	name;
-	color;
-	hand;
-	myTerr;
-}
-
-Player::Player(string playerName, int playerColor)
-{
-	allCards;
+	allCards = playerCards;
 	name = playerName;
 	color = playerColor;
-	hand;
-	myTerr;
+	myTerr = playerTerr;
 }
 	
 vector<Territory*> Player::getTerr()
 {
-
+	return myTerr;
 }
