@@ -15,10 +15,10 @@ void Game::play()
 
 	while(true){
 		for(int i=0; i<players.size(); i++){
-			//reinforcements phase
-			//attack phase
-			//fortify phase
-			//draw a card if a territory is conquered
+			reinforcementsPhase(players[i]);    //reinforcements phase
+		    attackPhase(players[i]);    //attack phase
+			fortifyPhase(players[i]);    //fortify phase
+			endTurn(players[i]);    //draw a card if a territory is conquered
 		}
 	}
 }
@@ -32,15 +32,21 @@ void Game::reinforcementsPhase(Player p) {
     ;
 }
 void Game::attackPhase(Player p) {
-    ; // populate list of territories with # of troops in parenthesis
-    // instantiates object of type Assault that handles the battle
-        // tells you how many troops you have left after each assault
-        //asks if you want to continue assaulting
+    // populate list of territories that the player can attack from (with # of troops in parenthesis)
+        //populate a list of territories that the player can attack (with the # of troops in parenthesis)
+    
+            //Assault battle(attackingTerr, defendingTerr);  // instantiates object of type Assault that handles the battle
+            //battle.begin();   //begins the assault
+            //if(battle.isConquered()) {  //if the territory was conquered
+                //battle.troopMovement();   //allows player to move troops to conquered territory
+                //set player value that holds if a territory was conquered to true
+            //}
     // if attacking player wins the battle, calls troop movement
 }
 void Game::fortifyPhase(Player p) {
     ;
 }
 void Game::endTurn(Player p) { 
-    ;
+    ;//checks to see if a territory was captured
+       //if it was, the player gets a card and sets value back to false
 }

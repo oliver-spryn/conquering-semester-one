@@ -1,6 +1,7 @@
 #include <string>
 #include <vector>
 #include "Hand.h"
+#include "Territory.h"
 using std::string;
 using std::vector;
 
