@@ -35,9 +35,9 @@ Deck::Deck(string filename)
 
 		if(c.name.size() > largestName)
 			largestName = c.name.size();
-
-		string s;
-		itoa(c.value, (char*)s.c_str(), 10);
+		
+		string s = std::to_string((long long)c.value);
+		//itoa(c.value, (char*)s.c_str(), 10);
 		if(strlen(s.c_str()) > sizeOfLargestValue)
 			sizeOfLargestValue = strlen(s.c_str());
 	}
@@ -56,8 +56,9 @@ void Deck::addCard(CardGroup& group) //there is a problem here...hand.removeCard
 		if(v[i].name.size() > largestName)
 			largestName = v[i].name.size();
 
-		string s;
-		itoa(v[i].value, (char*)s.c_str(), 10);
+		string s = std::to_string((long long)v[i].value);
+		//itoa(v[i].value, (char*)s.c_str(), 10);
+
 		if(strlen(s.c_str()) > sizeOfLargestValue)
 			sizeOfLargestValue = strlen(s.c_str());
 	}
