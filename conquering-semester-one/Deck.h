@@ -2,6 +2,8 @@
 #include <fstream>
 #include <string>
 #include <deque>
+#include <vector>
+#include <iomanip>
 #include "CardGroup.h"
 #include "Card.h"
 using std::istream;
@@ -17,8 +19,9 @@ public:
 	Deck(string filename);
 	virtual int size() {return deck.size();}
 	virtual void addCard(CardGroup& group);
-	virtual Card removeCard();
+	virtual vector<Card> removeCard();
 	void shuffle();
+	void print();
 
 private:
 	deque<Card> deck;

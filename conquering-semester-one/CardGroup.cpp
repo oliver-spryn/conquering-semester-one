@@ -1,6 +1,8 @@
 #include "CardGroup.h"
 using std::cin;
 
+int nUniqueVal = 0;
+
 int getValidIntChoice(int acceptedValues[], int numValues)
 {
 	string choice = " ";

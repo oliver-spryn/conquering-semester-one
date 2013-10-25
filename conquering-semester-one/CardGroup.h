@@ -14,7 +14,7 @@ public:
 	bool empty() {return size() == 0;}
 
 	virtual void addCard(CardGroup& group) = 0;
-	virtual Card removeCard() = 0;
+	virtual vector<Card> removeCard() = 0;
 
 protected:
 	int largestName;
