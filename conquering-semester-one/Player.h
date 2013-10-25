@@ -1,9 +1,11 @@
 #include <string>
 #include <vector>
+#include <map>
 #include "Hand.h"
-#include "Territory.h"
+#include "Deck.h"
 using std::string;
 using std::vector;
+using std::map;
 
 #ifndef PLAYER_H
 #define PLAYER_H
@@ -11,16 +13,15 @@ using std::vector;
 class Player
 {
 public:
-	Player(string playerName, int playerColor, map<string, Territory>& playerTerr, Deck& playerCards);
+	Player(string playerName, int playerColor, Deck* playerCards);
 	string getName() {return name;}
-	string getColor() {return color;}
-	vector<Territory*> getTerr();
+	int getColor() {return color;}
 private:
 	string name;
 	int color;
-	Deck allCards&;
-	vector<Territory*> myTerr;
+	Deck *allCards;
 	Hand hand;
+	//bool conqueredTerr;
 };
 
 #endif

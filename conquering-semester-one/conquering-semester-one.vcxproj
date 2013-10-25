@@ -85,16 +85,13 @@
     <ClCompile Include="TroopModifierOutOfRange.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\source\Player.h" />
-    <ClInclude Include="..\source\Territory.h" />
     <ClInclude Include="BaseException.h" />
-    <ClInclude Include="Card.h" />
-    <ClInclude Include="CardGroup.h" />
     <ClInclude Include="Deck.h" />
     <ClInclude Include="Display.h" />
     <ClInclude Include="DistributeParametersInvalid.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Hand.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Territory.h" />
     <ClInclude Include="TroopHandler.h" />
     <ClInclude Include="TroopModifierOutOfRange.h" />
   </ItemGroup>

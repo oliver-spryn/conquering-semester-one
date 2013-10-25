@@ -2,11 +2,30 @@
 
 void Game::setup()
 {
-    int numPlayers;    
-	cout << "Enter the number of players (2-5): ";//get number of players
-    cin >> numPlayers; //set up other options
-	for(int i=0; i < numPlayers; i++) { //populate a private containers of players
-        
+	//Assign the colors
+	vector<int> colors;
+	colors.push_back(pink);
+	colors.push_back(green);
+	colors.push_back(yellow);
+	colors.push_back(blue);
+	colors.push_back(white);
+	colors.push_back(red);
+
+	//Get number of players
+    int numPlayers;
+	cout << "Enter the number of players (2-6): ";
+    cin >> numPlayers;
+
+	//Build the set of information for creating the Player class
+	for(int i=0; i < numPlayers; i++) {
+		string name;
+	//get name of player
+		cout << "Player " << i + 1 << " enter your name: ";
+		cin >> name;
+        Player player(name,colors[i], &deck);
+		
+	//Add the player to the container
+		players.push_back(player);
     }
 }
 void Game::play()

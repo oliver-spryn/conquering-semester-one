@@ -22,7 +22,7 @@ TroopHandler::TroopHandler() : numTroops(1) { }
  * @throws TroopModifierOutOfRange     Thrown when "add" is less than 0, or it causes the troop total to exceed MAX_TROOPS
 */
 
-void TroopHandler::addTroop(int add = 1) throw(TroopModifierOutOfRange) {
+void TroopHandler::addTroop(int add) throw(TroopModifierOutOfRange) {
 	if (this->numTroops + add > TroopHandler::MAX_TROOPS) {
 		throw new TroopModifierOutOfRange("This maximum number of troops you may have on this territory is " + TroopHandler::MAX_TROOPS);
 	} else if (add < 0) {
@@ -43,7 +43,7 @@ void TroopHandler::addTroop(int add = 1) throw(TroopModifierOutOfRange) {
  * @throws TroopModifierOutOfRange     Thrown when "del" is less than 0, or it causes the troop total to fall behind 1
 */
 
-void TroopHandler::delTroop(int del = 1) throw(TroopModifierOutOfRange) {
+void TroopHandler::delTroop(int del) throw(TroopModifierOutOfRange) {
 	if (this->numTroops - del < 1) {
 		throw new TroopModifierOutOfRange("You must have at least 1 troop on this territory");
 	} else if (del < 0) {

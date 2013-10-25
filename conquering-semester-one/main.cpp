@@ -6,7 +6,7 @@ int main() {
 	Game risk;
 
 	risk.setup();
-	risk.play();
+	//risk.play();
 
 	return 0;
 }

@@ -2,6 +2,7 @@
 #include <vector>
 #include "Player.h"
 #include "Deck.h"
+#include "Display.h"
 using std::cout;
 using std::cin;
 using std::vector;
