@@ -1,5 +1,7 @@
 #include <iostream>
+#include <vector>
 #include "Card.h"
+using std::vector;
 
 #ifndef CARD_GROUP
 #define CARD_GROUP

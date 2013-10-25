@@ -10,8 +10,9 @@ istream& operator >> (istream& in, Card& c)
 	string n;
 	int v;
 
-	in >> n;
+	std::getline(in, n);
 	in >> v;
+
 	c.name = n;
 	c.value = v;
 
