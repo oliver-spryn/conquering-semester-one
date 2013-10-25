@@ -7,14 +7,13 @@ bool operator == (Card& left, Card& right)
 
 istream& operator >> (istream& in, Card& c)
 {
-	string n;
-	int v;
+	string n, v;
 
 	std::getline(in, n);
-	in >> v;
+	std::getline(in, v);	
 
 	c.name = n;
-	c.value = v;
+	c.value = atoi(v.c_str());
 
 	return in;
 }
