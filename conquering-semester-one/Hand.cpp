@@ -13,7 +13,11 @@ void Hand::addCard(CardGroup& group)
 		largestName = c.name.size();
 
 	string s;
-	itoa(c.value, (char*)s.c_str(), 10);
+	stringstream ss;
+	ss << c.value;
+	s = ss.str();
+	ss.clear();
+	
 	if(strlen(s.c_str()) > sizeOfLargestValue)
 		sizeOfLargestValue = strlen(s.c_str());
 }

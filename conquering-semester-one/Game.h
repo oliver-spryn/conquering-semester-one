@@ -1,5 +1,7 @@
+#include <ctime>
 #include <iostream>
 #include <vector>
+#include <stdlib.h>
 #include "Player.h"
 #include "Deck.h"
 #include "Display.h"
@@ -13,6 +15,8 @@ using std::vector;
 class Game
 {
 public:
+	Game();
+
 	void setup();
 	void play();
 	void firstTurn();
@@ -23,8 +27,10 @@ public:
 	void endTurn(Player p);         //draw a card if a territory is conquered
 private:
 	vector <Player> players;
-	Deck deck;
+	Deck *deck;
 	//Board board;
+
+	int roll();
 };
 
 #endif
