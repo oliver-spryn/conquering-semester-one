@@ -1,10 +1,12 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <sstream>
 #include <iomanip>
 #include "CardGroup.h"
 using std::vector;
 using std::string;
+using std::stringstream;
 
 #ifndef HAND_H
 #define HAND_H

@@ -1,5 +1,9 @@
 #include "Game.h"
 
+Game::Game() : deck(new Deck("card-list.txt")) {
+	srand(time(0));
+}
+
 void Game::setup()
 {
 	//Assign the colors
@@ -22,7 +26,7 @@ void Game::setup()
 		//get name of player
 		cout << "Player " << i + 1 << " enter your name: ";
 		cin >> name;
-        Player player(name,colors[i], &deck);
+        Player player(name,colors[i], deck);
 		
 		//Add the player to the container
 		players.push_back(player);
@@ -43,8 +47,7 @@ void Game::play()
 }
 void Game::firstTurn()
 {
-	//players roll die to determine order and reorder the vector of players accordingly
-	//initial troop placement
+	
 }
 
 void Game::reinforcementsPhase(Player p) {
@@ -68,4 +71,8 @@ void Game::fortifyPhase(Player p) {
 void Game::endTurn(Player p) { 
     ;//checks to see if a territory was captured
        //if it was, the player gets a card and sets value back to false
+}
+
+int Game::roll() {
+	return rand() % 5 + 1;
 }
