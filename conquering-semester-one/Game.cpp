@@ -19,12 +19,12 @@ void Game::setup()
 	//Build the set of information for creating the Player class
 	for(int i=0; i < numPlayers; i++) {
 		string name;
-	//get name of player
+		//get name of player
 		cout << "Player " << i + 1 << " enter your name: ";
 		cin >> name;
         Player player(name,colors[i], &deck);
 		
-	//Add the player to the container
+		//Add the player to the container
 		players.push_back(player);
     }
 }
