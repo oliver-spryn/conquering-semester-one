@@ -15,18 +15,24 @@
 #include "Display.h"
 #include "Player.h"
 #include "Territory.h"
+#include <vector>
+#include <algorithm>
+using std::vector;
+using std::sort;
 
 class Assault {
 private : 
-    Territory attackingTerr, defendingTerr;
+    Territory *attTerr, *defTerr;
     bool isConquered();
+    vector<int> attDice;
+    vector<int> defDice;
 
 public : 
-    Assault(Territory, Territory);
+    Assault(Territory*, Territory*);
 
-    void attack();
+    bool attack();
+    int roll();
     void troopMovement();
-    bool terrCaptured();
 };
 
 #endif

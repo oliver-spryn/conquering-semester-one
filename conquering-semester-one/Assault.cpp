@@ -12,21 +12,95 @@
  * @return void
 */
 
-Assault::Assault(Territory attackingTerr, Territory defendingTerr) {
-    this->attackingTerr = attackingTerr;
-    this->defendingTerr = defendingTerr;
+Assault::Assault(Territory* attTerr, Territory* defTerr) {
+    this->attTerr = attTerr;
+    this->defTerr = defTerr;
 }
 
 /**
  * This function handles the attacking between territories.
  *
  * @access public
- * @return void
+ * @return true if the defending territory was captured, false if it was not
 */
 
-void Assault::attack() {
-    
-    
+bool Assault::attack() {
+    int a, d;
+    while(attTerr->getNumTroops() > 1) {
+        //gets number of attDice
+        switch(attTerr->getNumTroops()) {
+        case 0:
+            // display something about error -- shouldn't happen
+        case 1:
+            // display error -- can't attack
+            break;
+        case 2:
+            a=1;
+            break;
+        case 3:
+            a=2;
+            break;
+        default:
+            a=3;
+            break;
+        }
+
+        // gets number of defDice
+        switch(defTerr->getNumTroops()) {
+        case 0:
+            // error -- shouldn't happen
+        case 1:
+            d=1;
+            break;
+        default:
+            d=2;
+            break;
+        }
+
+        // get value of attDice
+        for(a; a>0; a--)
+            attDice.push_back(roll());
+
+        // get value of defDice
+        for(d; d>0; d--)
+            defDice.push_back(roll());
+
+        // sort dice
+        sort(attDice.rbegin(), attDice.rend());
+        sort(defDice.rbegin(), defDice.rend());
+
+        int i=0;
+        int attLosses = 0; //number of troops attacker looses in the battle
+        int defLosses = 0;  //number of troops defender looses in the battle 
+        while(i < attDice.size() && i < defDice.size()) {
+            if(attDice[i] > defDice[i]) { //attacker wins
+                defLosses++;
+            }
+            else {                        //defender wins
+                attLosses++;
+            }
+
+            i++;
+        }
+
+        //Display dice rolls and final results
+
+        attTerr->delTroop(attLosses);
+        defTerr->delTroop(defLosses);
+
+        attDice.clear();
+        defDice.clear();
+
+        if(defTerr->getNumTroops() == 0) { //checks if there are any troops on defTerr
+            troopMovement();
+            return true;
+        }
+
+        //get if user would like to attack again if he can
+            //if he does, do nothing
+            //if not, break;
+    }
+    return false;
 }
 
 /**
@@ -37,18 +111,13 @@ void Assault::attack() {
 */
 
 void Assault::troopMovement() {
-    ;
+    attTerr->delTroop();
+    defTerr->addTroop();
+    
+    //check if attTerr->getNumTroops()>0
+        // if true, get num to move;
 }
 
-/**
- * This function returns the value of terrCaptured();
- *
- * @access public
- * @return bool
-*/
-
-bool Assault::terrCaptured() {
-    ;
+int Assault::roll() {
+	return rand() % 5 + 1;
 }
-
-
