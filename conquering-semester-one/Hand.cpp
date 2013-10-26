@@ -39,20 +39,26 @@ vector<Card> Hand::removeCard()
 	int choice = -1;
 
 	int *options = new int[hand.size()];
-	for(int i=0; i<hand.size()+1; i++)
-		options[i] = i;
+	for(int i=0; i<hand.size(); i++)
+		options[i] = i+1;
 	//may not need this...
-	system("cls");
+	//system("cls");
 	//******************
 	do {
 	for(int j=0; j<3; j++) {
 		for(int i=0; i<hand.size(); i++) {
-			cout << left << setw(6) << "(" << options[i] << ")";
+			cout << left << "(" << options[i] << ")";
 			cout << left << setw(largestName + 2) << hand[i].name;
 			cout << left << setw(sizeOfLargestValue) << hand[i].value << endl << endl;
 		}
 		if(validSet == false)
 			cout << "invalid set." << endl;
+		if(c.size() != 0)
+			cout << "Selected: ";
+		for(int i=0; i<c.size(); i++)
+			cout << c[i].name << "\t";
+		if(c.size() != 0)
+			cout << endl;
 		while(choice == -1) {
 			cout << "Please enter the number of the card you wish to discard, or 0 to return to the previous screen" << endl;
 			cout << "Choice: ";
@@ -64,17 +70,26 @@ vector<Card> Hand::removeCard()
 			return c;
 		}
 		else {
-			c.push_back(hand.at(choice+1));
+			c.push_back(hand.at(choice-1));
 			choice = -1;
 		}
 	}
 	validSet = ((c[0].value == c[1].value && c[1].value == c[2].value) ||
 				(c[0].value != c[1].value && c[1].value != c[2].value && c[2].value != c[0].value));
+	if(!validSet)
+		c.clear();
 
 	} while(validSet == false);
 
 	delete [] options;
 
+	for(int i=hand.size()-1; i >= 0; i--) {
+		for(int j=0; j<3; j++) {
+			if(hand[i] == c[j])
+				hand.erase(hand.begin()+i);
+		}
+	}
+		
 	//bool found = false;
 	//auto i = hand.begin();	
 
