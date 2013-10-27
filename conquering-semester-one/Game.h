@@ -1,5 +1,6 @@
 #include <ctime>
 #include <iostream>
+#include <conio.h>
 #include <vector>
 #include <stdlib.h>
 #include "Player.h"
@@ -7,6 +8,7 @@
 #include "Display.h"
 using std::cout;
 using std::cin;
+using std::endl;
 using std::vector;
 
 #ifndef GAME_H
@@ -28,9 +30,13 @@ public:
 private:
 	vector <Player> players;
 	Deck *deck;
+	vector<string> text;
+	vector<char> align;
 	//Board board;
 
 	int roll();
+	void pause();
+	void setTitle(string title);
 };
 
 #endif

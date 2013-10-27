@@ -36,6 +36,39 @@ void Display::coloredText(string text, int color) {
         SetConsoleTextAttribute(cHandle, Display::DEFAULT_CONSOLE_COLOR);
 }
 
+void Display::displayColorChart() {
+	cout << "Displaying the console color code then some sample text..." << endl << endl;
+
+	for (int i = 0; i <= 255; ++i) {
+	//Set the text color
+		Display::setTextColor(i);
+
+	//Display the outputted text
+		cout << i << ". Sample text";
+
+		if (i <= 9) {
+			cout << "  ";
+		} else if (i <= 99) {
+			cout << " ";
+		}
+
+	//Reset the background color of the text for the "gaps" in the columns of the chart
+		Display::resetTextColor();
+		
+	//Render the gaps between the columns in the chart
+		cout << "   ";
+
+	//Create a new row
+		if ((i + 1) % 4 == 0) {
+			cout << endl << endl;
+		}
+	}
+
+	Display::resetTextColor();
+
+	cout << endl << endl << endl << endl;
+}
+
 /**
  * This function will take a vector of strings and lay them out such that each
  * string will have its own "cell" in an evenly-spaced, invisible table that
