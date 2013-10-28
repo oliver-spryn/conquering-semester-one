@@ -13,7 +13,7 @@
 */
 
 bool operator== (Territory& t1, Territory& t2) {
-	return t1.color == t2.color && t1.continent == t2.continent && t1.name == t2.name;
+	return t1.name == t2.name;
 }
 
 /**
@@ -29,7 +29,11 @@ bool operator== (Territory& t1, Territory& t2) {
 */
 
 bool operator!= (Territory& t1, Territory& t2) {
-	return t1.color != t2.color || t1.continent != t2.continent || t1.name != t2.name;
+	return t1.name != t2.name;
+}
+
+void Territory::addTangent(Territory* tangent) {
+	this->tangent.push_back(tangent);
 }
 
 /**
@@ -39,39 +43,11 @@ bool operator!= (Territory& t1, Territory& t2) {
  * this constructor, and calls this class's super constructor.
  *
  * @access public
- * @param  int                color     The color of this terriory, as defined by the ENUM in Display.h
- * @param  string             continent The string name of the continent in which this territory resides
  * @param  string             name      The string name of this territory
- * @param  vector<Territory*> tangent   A vector of pointers to Territory objects indicating territories which are tangent to the current territory
- * @param  Player&            owner     A reference to the Player object which owns this territory
  * @return void
 */
 
-Territory::Territory(int color, string continent, string name, vector<Territory*> tangent, Player& owner) : 
-	TroopHandler(), color(color), continent(continent), name(name), tangent(tangent), owner(owner) { }
-
-/**
- * Access the integer value (according to the Windows console) of this
- * territory's color.
- *
- * @access public
- * @return int    The integer value according to the Windows console) of this territory's color
-*/
-
-int Territory::getColor() const {
-	return this->color;
-}
-
-/**
- * Access the name of the continent in which this territory resides.
- *
- * @access public
- * @return string The name of the continent in which this territory resides
-*/
-
-string Territory::getContinent() const {
-	return this->continent;
-}
+Territory::Territory(string name) : TroopHandler(), name(name) { }
 
 /**
  * Access the name of the territory.
@@ -92,7 +68,11 @@ string Territory::getName() const {
 */
 
 Player& Territory::getOwner() const {
-	return this->owner;
+	return *owner;
+}
+
+vector<Territory*> Territory::getTanget() const {
+	return this->tangent;
 }
 
 /**
@@ -121,6 +101,6 @@ bool Territory::isTangentTo(Territory& territory) {
  * @return void
 */
 
-void Territory::setOwner(Player& owner) {
+void Territory::setOwner(Player* owner) {
 	this->owner = owner;
 }

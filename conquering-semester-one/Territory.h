@@ -26,20 +26,21 @@ private :
 	int color;
 	string continent;
 	string name;
-	Player& owner;
+	Player* owner;
 	vector<Territory*> tangent;
 
 public : 
 	friend bool operator== (Territory& t1, Territory& t2);
 	friend bool operator!= (Territory& t1, Territory& t2);
 
-	Territory(int, string, string, vector<Territory*>, Player&);
-	int getColor() const;
-	string getContinent() const;
+	Territory(string);
+
+	void addTangent(Territory*);
 	string getName() const;
 	Player& getOwner() const;
+	vector<Territory*> getTanget() const;
 	bool isTangentTo(Territory&);
-	void setOwner(Player&);
+	void setOwner(Player*);
 };
 
 #endif

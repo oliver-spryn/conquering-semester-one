@@ -2,10 +2,44 @@
 #include "windows.h"
 using std::map;
 
-Game::Game() : deck(new Deck("card-list.txt")) {
+Game::Game() : deck(new Deck("card-list.txt")), terrConquered(false) {
 	srand(time(0));
 	text.push_back("Replace me :D");
 	align.push_back('C');
+
+//Initialize teh Territory pointerz :)
+	ifstream fin;
+	char terr[256];
+	char tangent[256];
+	fin.open("territory-list.txt");
+	
+//Add each of the territories to a container
+	while(!fin.eof()) {
+		fin.getline(terr, 256);
+
+	//Lines that begin with a tab indicate tangent territories
+		if (terr[0] != '\t')
+			territories.push_back(new Territory(terr));
+	}
+
+//Start anew <--- poetic ;)
+	fin.seekg(0);
+
+//Add each of the tangent territories
+	fin.getline(tangent, 256); // Get the first territory out of the way ;)
+
+	for(int i = 0; i < territories.size(); ++i) {
+	//Lines that begin with a tab indicate tangent territories
+		while(true) {
+			fin.getline(tangent, 256);
+
+			if (tangent[0] == '\t') {
+				territories[i]->addTangent(new Territory(tangent));
+			} else {
+				break;
+			}
+		}
+	}
 }
 
 void Game::setup()
@@ -81,7 +115,8 @@ void Game::play()
 			reinforcementsPhase(players[i]);    //reinforcements phase
 		    attackPhase(players[i]);    //attack phase
 			fortifyPhase(players[i]);    //fortify phase
-			endTurn(players[i]);    //draw a card if a territory is conquered
+			if (terrConquered)
+				endTurn(players[i]);    //draw a card if a territory is conquered
 		}
 		currentPlayer = 0;
 	}
@@ -144,6 +179,20 @@ void Game::firstTurn()
 		}
     }
 
+	//distributing soldiers.
+	vector<int> numTroops(players.size());
+	int initDistribution = (deck->size() / players.size());
+	int remainder = deck->size() % players.size();
+
+	for(int i=0; i<numTroops.size(); i++)
+		numTroops[i] = initDistribution;
+	for(int i=numTroops.size()-1; remainder > 0; i--) {
+		numTroops[i]++;
+		remainder--;
+	}
+
+
+
 	pause();
 }
 
@@ -194,8 +243,12 @@ void Game::fortifyPhase(Player p) {
 }
 
 void Game::endTurn(Player p) { 
-    ;//checks to see if a territory was captured
-       //if it was, the player gets a card and sets value back to false
+	Hand* h = p.getHand();
+    //if it was, the player gets a card and sets value back to false
+	h->addCard(*deck);
+	delete h;
+
+	terrConquered = false;
 }
 
 int Game::roll() {
