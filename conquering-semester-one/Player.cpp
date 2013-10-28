@@ -11,4 +11,9 @@ bool operator == (Player& left, Player& right)
 {
 	return (left.getColor() == right.getColor());
 }
+
+bool operator != (Player& left, Player& right)
+{
+	return (left.getColor() != right.getColor());
+}
 	
