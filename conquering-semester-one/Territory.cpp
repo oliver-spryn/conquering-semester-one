@@ -56,7 +56,7 @@ Territory::Territory(string name) : TroopHandler(), name(name) { }
  * @return string The name of the territory
 */
 
-string Territory::getName() const {
+string Territory::getName() {
 	return this->name;
 }
 
@@ -67,11 +67,11 @@ string Territory::getName() const {
  * @return string The owner of this territory
 */
 
-Player& Territory::getOwner() const {
-	return *owner;
+Player* Territory::getOwner() {
+	return owner;
 }
 
-vector<Territory*> Territory::getTanget() const {
+vector<Territory*> Territory::getTanget() {
 	return this->tangent;
 }
 

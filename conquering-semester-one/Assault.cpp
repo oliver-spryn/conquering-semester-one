@@ -119,8 +119,13 @@ void Assault::terrAcquisition(vector<Territory*> &terr) {
         }
     }
     if(!terrRemaining) {
-        ;//
+        attTerr->getOwner()->getHand()->addCards(attTerr->getOwner()->getHand()->flush());
+        if(attTerr->getOwner()->getHand()->size()>4) {
+            ;// NICK
+        }
     }
+
+    defTerr->setOwner(attTerr->getOwner());
 
     attTerr->delTroop();
     defTerr->addTroop();

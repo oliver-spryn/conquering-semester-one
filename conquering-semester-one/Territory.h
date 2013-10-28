@@ -36,9 +36,9 @@ public :
 	Territory(string);
 
 	void addTangent(Territory*);
-	string getName() const;
-	Player& getOwner() const;
-	vector<Territory*> getTanget() const;
+	string getName();
+	Player* getOwner();
+	vector<Territory*> getTanget();
 	bool isTangentTo(Territory&);
 	void setOwner(Player*);
 };
