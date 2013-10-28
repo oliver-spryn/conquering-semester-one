@@ -26,6 +26,7 @@ Game::Game() : deck(new Deck("card-list.txt")), terrConquered(false) {
 	fin.seekg(0);
 
 //Add each of the tangent territories
+	string convert;
 	fin.getline(tangent, 256); // Get the first territory out of the way ;)
 
 	for(int i = 0; i < territories.size(); ++i) {
@@ -34,7 +35,14 @@ Game::Game() : deck(new Deck("card-list.txt")), terrConquered(false) {
 			fin.getline(tangent, 256);
 
 			if (tangent[0] == '\t') {
-				territories[i]->addTangent(new Territory(tangent));
+				convert = tangent;
+				convert = convert.substr(1);
+
+				for (int j = 0; j < territories.size(); ++j) {
+					if (territories[j]->getName() == convert) {
+						territories[i]->addTangent(territories[j]);
+					}
+				}
 			} else {
 				break;
 			}
