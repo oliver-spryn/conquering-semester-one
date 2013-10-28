@@ -10,8 +10,7 @@ using std::map;
 #ifndef PLAYER_H
 #define PLAYER_H
 
-class Player
-{
+class Player {
 public:
 	Player(string playerName, int playerColor, Deck* playerCards);
 	string getName() {return name;}
@@ -26,7 +25,6 @@ private:
 	int color;
 	Deck *allCards;
 	Hand hand;
-	//bool conqueredTerr;
 };
 
 #endif
