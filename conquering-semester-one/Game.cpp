@@ -208,17 +208,48 @@ void Game::reinforcementsPhase(Player p) {
     ;
 }
 void Game::attackPhase(Player p) {
+    while(true) {
+    vector<Territory *> attTerr;
     // populate list of territories that the player can attack from (with # of troops in parenthesis)
-        //populate a list of territories that the player can attack (with the # of troops in parenthesis)
+    for(int i = 0; i < /*Territory Vector*/.size(); i++) {
+        if(/*Territory Vector*/[i].getOwner() == p) {
+            attTerr.push_back(/*Territory Vector*/[i]);
+            cout << i << " - " << /*Territory Vector*/[i].getName() << "(" << /*Territory Vector*/[i].getNumTroops << ")" << endl;
+        }
+    }
     
-            //Assault battle(attackingTerr, defendingTerr);  // instantiates object of type Assault that handles the battle
-            //if(battle.begin()) {  //begins the assault
-                //set player value that holds if a territory was conquered to true
-            //}
+    int a=-1;
+    while(a<0 || a >= /*Territory Vector*/[i].size()) {
+        cout << "Enter the number corresponding to the territory from which you would like to attack : ";
+        cin >> a;
+        cout << '\n';
+    }
+
+    //populate a list of territories that the player can attack (with the # of troops in parenthesis)
+    vector<Territory *> defTerr = attTerr[a]->terrAdj();
+    for(int i = 0; i < defTerr.size(); i++) {
+        if(defTerr[i]->getOwner() != p) {
+            attTerr.push_back(/*Territory Vector*/[i]);
+            cout << i << " - " << /*Territory Vector*/[i].getName() << "(" << /*Territory Vector*/[i].getNumTroops << ")" << endl;
+        }
+    }
+        
+    int d=-1;
+    while(d<0 || d >= /*Territory Vector*/[i].size()) {
+        cout << "Enter the number corresponding to the territory which you would like to attack : ";
+        cin >> d;
+        cout << '\n';
+    }
+        Assault battle(attTerr, defTerr);  // instantiates object of type Assault that handles the battle
+            if(battle.begin()) {  //begins the assault
+                terrConquered = true;    //set player value that holds if a territory was conquered to true
+            }
+    }
 }
 void Game::fortifyPhase(Player p) {
     ;
 }
+
 void Game::endTurn(Player p) { 
 	Hand* h = p.getHand();
     //if it was, the player gets a card and sets value back to false
