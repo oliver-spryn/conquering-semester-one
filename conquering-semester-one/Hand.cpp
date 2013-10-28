@@ -5,8 +5,7 @@ using std::setw;
 using std::left;
 using std::string;
 
-void Hand::addCard(CardGroup& group)
-{
+void Hand::addCard(CardGroup& group) {
 	vector<Card> v;
 	v = group.removeCard();
 	hand.push_back(v[0]);
@@ -27,8 +26,7 @@ void Hand::addCard(CardGroup& group)
 		sizeOfLargestValue = strlen(s.c_str());
 }
 
-vector<Card> Hand::removeCard()
-{
+vector<Card> Hand::removeCard() {
 	vector<Card> c;
 	bool validSet = true;
 	if(empty()) {
@@ -89,27 +87,10 @@ vector<Card> Hand::removeCard()
 				hand.erase(hand.begin()+i);
 		}
 	}
-		
-	//bool found = false;
-	//auto i = hand.begin();	
-
-	//for(i; i != hand.end(); i++) {
-	//	if(*i == c) {
-	//		hand.erase(i);
-	//		found = true;
-	//		break;
-	//	}
-	//}
-	//if(found == false) {
-	//	cout << "The card you are trying to remove is not in the hand." << endl;
-	//	throw(Tried_to_remove_nonexistent_card());
-	//}
-
 	return c;
 }
 
-bool Hand::hasTerrCard(string terrName)
-{
+bool Hand::hasTerrCard(string terrName){
 	for(auto i = hand.begin(); i != hand.end(); i++) {
 		if(i->name == terrName)
 			return true;
@@ -117,8 +98,7 @@ bool Hand::hasTerrCard(string terrName)
 	return false;
 }
 
-void Hand::print()
-{
+void Hand::print() {
 	for(int i=0; i<hand.size(); i++) {
 		cout << left << setw(largestName + 1) << hand[i].name;
 		cout << left << setw(sizeOfLargestValue) << hand[i].value << endl;

@@ -13,8 +13,7 @@ using std::deque;
 #ifndef DECK_H
 #define DECK_H
 
-class Deck : public CardGroup
-{
+class Deck : public CardGroup {
 public:
 	Deck(string filename);
 	virtual int size() {return deck.size();}
