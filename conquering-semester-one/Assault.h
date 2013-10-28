@@ -32,7 +32,7 @@ public :
 
     bool attack();
     int roll();
-    void troopMovement();
+    void terrAcquisition(vector<Territory*> &terr);
 };
 
 #endif

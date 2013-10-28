@@ -92,7 +92,6 @@ bool Assault::attack() {
         defDice.clear();
 
         if(defTerr->getNumTroops() == 0) { //checks if there are any troops on defTerr
-            troopMovement();
             return true;
         }
 
@@ -110,7 +109,19 @@ bool Assault::attack() {
  * @return void
 */
 
-void Assault::troopMovement() {
+void Assault::terrAcquisition(vector<Territory*> &terr) {
+    //check to see if that was the owner's last terr
+    bool terrRemaining = false;     // holds if defTerr's owner has any other terr left
+    for(int i = 0; i<terr.size(); i++) {
+        if(defTerr->getOwner() == terr[i]->getOwner() && defTerr != terr[i]) {  //checks if player has another terr
+            terrRemaining == true;                                              //sets true if the player does
+            break;
+        }
+    }
+    if(!terrRemaining) {
+        ;//
+    }
+
     attTerr->delTroop();
     defTerr->addTroop();
     
