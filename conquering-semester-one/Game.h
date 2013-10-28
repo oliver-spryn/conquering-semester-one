@@ -37,7 +37,6 @@ private:
 	vector <Territory*> territories;
 	vector<string> text;
 	vector<char> align;
-	bool terrConquered;
 
 	int roll();
 	void pause();

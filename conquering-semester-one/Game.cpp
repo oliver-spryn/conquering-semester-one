@@ -179,6 +179,20 @@ void Game::firstTurn()
 		}
     }
 
+	//distributing soldiers.
+	vector<int> numTroops(players.size());
+	int initDistribution = (deck->size() / players.size());
+	int remainder = deck->size() % players.size();
+
+	for(int i=0; i<numTroops.size(); i++)
+		numTroops[i] = initDistribution;
+	for(int i=numTroops.size()-1; remainder > 0; i--) {
+		numTroops[i]++;
+		remainder--;
+	}
+
+
+
 	pause();
 }
 
@@ -198,8 +212,12 @@ void Game::fortifyPhase(Player p) {
     ;
 }
 void Game::endTurn(Player p) { 
-    ;//checks to see if a territory was captured
-       //if it was, the player gets a card and sets value back to false
+	Hand* h = p.getHand();
+    //if it was, the player gets a card and sets value back to false
+	h->addCard(*deck);
+	delete h;
+
+	terrConquered = false;
 }
 
 int Game::roll() {
