@@ -4,6 +4,7 @@
 #include <vector>
 #include <stdlib.h>
 #include <fstream>
+#include <string>
 
 #include "Territory.h"
 #include "Player.h"
@@ -44,7 +45,6 @@ private:
 	void pause();
 	void setTitle(string title);
 	int currentPlayer;
-    bool terrConquered;
-};
+	bool terrConquered;};
 
 #endif
