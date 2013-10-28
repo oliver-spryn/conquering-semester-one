@@ -7,6 +7,8 @@
 #include "Player.h"
 #include "Deck.h"
 #include "Display.h"
+#include "Territory.h"
+#include "Assault.h"
 using std::cout;
 using std::cin;
 using std::endl;
@@ -45,6 +47,7 @@ private:
 	void pause();
 	void setTitle(string title);
 	int currentPlayer;
+    bool terrConquered;
 };
 
 #endif
