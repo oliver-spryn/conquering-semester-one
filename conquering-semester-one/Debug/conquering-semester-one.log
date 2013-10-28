@@ -1,17 +1,32 @@
-﻿Build started 10/24/2013 9:33:53 PM.
+﻿Build started 10/28/2013 3:44:09 PM.
      1>Project "C:\Users\YOUNGGG1\Dropbox\Year 3 Semester 1\Comp 322 Advanced Programming\conquering-semester-one\source\conquering-semester-one\conquering-semester-one.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Touching "Debug\conquering-semester-one.unsuccessfulbuild".
+         Creating "Debug\conquering-semester-one.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         All outputs are up-to-date.
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Game.cpp main.cpp
+         Game.cpp
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\display.h(30): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\game.cpp(6): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\game.cpp(80): warning C4018: '<' : signed/unsigned mismatch
+         Generating Code...
+         Compiling...
+         main.cpp
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\display.h(30): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+         Generating Code...
+     1>cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
        ManifestResourceCompile:
          All outputs are up-to-date.
        Link:
          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\YOUNGGG1\Dropbox\Year 3 Semester 1\Comp 322 Advanced Programming\conquering-semester-one\source\Debug\conquering-semester-one.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\conquering-semester-one.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\YOUNGGG1\Dropbox\Year 3 Semester 1\Comp 322 Advanced Programming\conquering-semester-one\source\Debug\conquering-semester-one.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\YOUNGGG1\Dropbox\Year 3 Semester 1\Comp 322 Advanced Programming\conquering-semester-one\source\Debug\conquering-semester-one.lib" /MACHINE:X86 "Debug\conquering-semester-one.exe.embed.manifest.res"
+         Debug\Assault.obj
          Debug\BaseException.obj
+         Debug\Card.obj
+         Debug\CardGroup.obj
+         Debug\Deck.obj
          Debug\Display.obj
          Debug\DistributeParametersInvalid.obj
          Debug\Game.obj
+         Debug\Hand.obj
          Debug\main.obj
          Debug\Player.obj
          Debug\Territory.obj
@@ -30,4 +45,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.57
+Time Elapsed 00:00:02.41

@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "windows.h"
+using std::map;
 
 Game::Game() : deck(new Deck("card-list.txt")) {
 	srand(time(0));
@@ -74,78 +75,76 @@ void Game::setup()
 void Game::play()
 {
 	firstTurn();
-
+	int i = 0;
 	while(true){
-		for(int i=0; i<players.size(); i++){
+		for(i=currentPlayer; i<players.size(); i++){
 			reinforcementsPhase(players[i]);    //reinforcements phase
 		    attackPhase(players[i]);    //attack phase
 			fortifyPhase(players[i]);    //fortify phase
 			endTurn(players[i]);    //draw a card if a territory is conquered
 		}
+		currentPlayer = 0;
 	}
 }
+
 void Game::firstTurn()
 {
 	setTitle("Determining Who Starts the Game");
 
-//Roll the die for each of the users
-	vector<int> firstRolls(players.size());
-	int max = 0, maxIndex = 0, dupRoll = 0;
+	int numPlayers = players.size();
+    int numTrues = 0;
+    vector<bool> maybeFirst;
+    for(int i = 0; i<numPlayers; i++)
+	    maybeFirst.push_back(true);
 
-	cout << "Everyone is rolling their dice..." << endl << endl;
+    vector<int> rolls;
+	    for(int i = 0; i<numPlayers; i++) {
+		    if(maybeFirst[i])
+			    rolls.push_back(roll());
+        }
 
-	do {
-		for(int i = 0; i < players.size(); ++i) {
-			firstRolls[i] = roll();
+    do {
+	    for(int i = 0; i<numPlayers; i++) {
+		    if(maybeFirst[i])
+			    rolls[i] = roll();
+        }
+	
+	    for(int i=0; i<numPlayers-1; i++) {
+		    if(maybeFirst[i]) {
+			    for(int j=i+1; j<numPlayers; j++) {
+				    if(maybeFirst[j]) {
+					    if(rolls[i] > rolls[j])
+                            maybeFirst[j] = false;
+                        else if(rolls[i] < rolls[j]) {
+                           maybeFirst[i] = false;
+                           break;
+                        }
+				    }				
+			    }
+		    }
+	    }
+      
+        cout << '\n';
+        numTrues = 0;
+        for(int i =0; i<numPlayers; i++)
+            if(maybeFirst[i])
+                numTrues++;
+    } while(numTrues > 1);
 
-		//Do we have a winner, yet?
-			if (firstRolls[i] > max) {
-				max = firstRolls[i];
-				maxIndex = i;
-			}
+	int i = 0;
 
-		//Rats... we have a duplicate roll
-			if (firstRolls[i] == max) {
-				dupRoll = max;
-			}
-
+	for(i; i<numPlayers; i++) {
+		if(maybeFirst[i]) {
 			Display::setTextColor(players[i].getColor());
-			cout << players[i].getName() << ", you rolled a " << firstRolls[i] << endl;
+			cout << endl << players[i].getName();
+			Display::resetTextColor();
+			cout << " you go first!" << endl;
+			currentPlayer = i;
+			break;
 		}
-	} while (dupRoll == max);
-
-//Show the results of who won the roll
-	Display::setTextColor(players[maxIndex].getColor());
-	cout << endl << players[maxIndex].getName();
-	Display::resetTextColor();
-	cout << " you go first!" << endl;
+    }
 
 	pause();
-
-//Thanks http://www.cprogramming.com/tutorial/computersciencetheory/sorting1.html
-	/*for(int x=0; x<n; x++)
-
-	{
-
-		for(int y=0; y<n-1; y++)
-
-		{
-
-			if(array[y]>array[y+1])
-
-			{
-
-				int temp = array[y+1];
-
-				array[y+1] = array[y];
-
-				array[y] = temp;
-
-			}
-
-		}
-
-	}*/
 }
 
 void Game::reinforcementsPhase(Player p) {

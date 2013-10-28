@@ -74,10 +74,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Assault.cpp" />
     <ClCompile Include="BaseException.cpp" />
+    <ClCompile Include="Card.cpp" />
+    <ClCompile Include="CardGroup.cpp" />
+    <ClCompile Include="Deck.cpp" />
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="DistributeParametersInvalid.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Hand.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Territory.cpp" />
@@ -85,15 +90,23 @@
     <ClCompile Include="TroopModifierOutOfRange.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Assault.h" />
     <ClInclude Include="BaseException.h" />
+    <ClInclude Include="Card.h" />
+    <ClInclude Include="CardGroup.h" />
     <ClInclude Include="Deck.h" />
     <ClInclude Include="Display.h" />
     <ClInclude Include="DistributeParametersInvalid.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Hand.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Territory.h" />
     <ClInclude Include="TroopHandler.h" />
     <ClInclude Include="TroopModifierOutOfRange.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\diagrams\Territory List.txt" />
+    <None Include="Card List.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
