@@ -6,4 +6,9 @@ Player::Player(string playerName, int playerColor, Deck* playerCards)
 	name = playerName;
 	color = playerColor;
 }
+
+bool operator == (Player& left, Player& right)
+{
+	return (left.getColor() == right.getColor());
+}
 	
