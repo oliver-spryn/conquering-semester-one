@@ -17,6 +17,9 @@ public:
 	int getColor() {return color;}
 	Hand* getHand() {return &hand;}
 
+	friend bool operator == (Player& left, Player& right);
+	friend bool operator != (Player& left, Player& right);
+
 private:
 	string name;
 	int color;
