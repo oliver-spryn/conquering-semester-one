@@ -177,8 +177,12 @@ void Game::fortifyPhase(Player p) {
     ;
 }
 void Game::endTurn(Player p) { 
-    ;//checks to see if a territory was captured
-       //if it was, the player gets a card and sets value back to false
+	Hand* h = p.getHand();
+    //if it was, the player gets a card and sets value back to false
+	h->addCard(*deck);
+	delete h;
+
+	terrConquered = false;
 }
 
 int Game::roll() {

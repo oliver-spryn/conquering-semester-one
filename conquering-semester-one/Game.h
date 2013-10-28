@@ -39,6 +39,7 @@ private:
 	Deck *deck;
 	vector<string> text;
 	vector<char> align;
+	bool terrConquered;
 	//Board board;
 
 	int roll();

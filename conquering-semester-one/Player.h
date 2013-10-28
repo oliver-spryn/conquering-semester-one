@@ -16,6 +16,8 @@ public:
 	Player(string playerName, int playerColor, Deck* playerCards);
 	string getName() {return name;}
 	int getColor() {return color;}
+	Hand* getHand() {return &hand;}
+
 private:
 	string name;
 	int color;
