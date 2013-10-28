@@ -3,23 +3,22 @@
 #include <conio.h>
 #include <vector>
 #include <stdlib.h>
-#include <algorithm>
+#include <fstream>
+#include <string>
+
+#include "Territory.h"
 #include "Player.h"
 #include "Deck.h"
 #include "Display.h"
+#include "Assault.h"
 using std::cout;
 using std::cin;
 using std::endl;
+using std::ifstream;
 using std::vector;
 
 #ifndef GAME_H
 #define GAME_H
-
-struct RollData {
-	RollData() : reRoll(false), val(0) {}
-	bool reRoll;
-	int val;
-};
 
 class Game
 {
@@ -37,15 +36,14 @@ public:
 private:
 	vector <Player> players;
 	Deck *deck;
+	vector <Territory*> territories;
 	vector<string> text;
 	vector<char> align;
-	bool terrConquered;
-	//Board board;
 
 	int roll();
 	void pause();
 	void setTitle(string title);
 	int currentPlayer;
-};
+	bool terrConquered;};
 
 #endif
