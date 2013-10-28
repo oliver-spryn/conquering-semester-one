@@ -279,3 +279,15 @@ void Game::pause() {
 
 	_getch();
 }
+
+vector<Territory*> Game::playerOwns(Player &p) {
+	vector<Territory*> ret;
+
+	for (int i = 0; i < territories.size(); ++i) {
+		if (territories[i]->getOwner() == p) {
+			ret.push_back(territories[i]);
+		}
+	}
+
+	return ret;
+}
