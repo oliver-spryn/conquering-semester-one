@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <fstream>
 #include <string>
+#include <algorithm>
 
 #include "Territory.h"
 #include "Player.h"
@@ -20,7 +21,7 @@ using std::vector;
 #ifndef GAME_H
 #define GAME_H
 
-const int INITIAL_TROOPS[5] = {3, 35, 30, 25, 20};
+const int INITIAL_TROOPS[5] = {5, 35, 30, 25, 20};
 
 class Game
 {

@@ -52,6 +52,16 @@ Game::Game() : deck(new Deck("card-list.txt")), terrConquered(false) {
 
 	fin.close();
 	fin2.close();
+
+	deck->shuffle();
+	int a, b, c = territories.size();
+
+	for(int i=0; i<10000; i++)
+	{
+		a = rand() % c;
+		b = rand() % c;
+		std::swap(territories[a], territories[b]);
+	}
 }
 
 void Game::setup()
@@ -128,12 +138,21 @@ void Game::play()
 			{
 				reinforcementsPhase(players[i]);    //reinforcements phase
 				attackPhase(players[i]);    //attack phase
-				fortifyPhase(players[i]);    //fortify phase
-				if (terrConquered)
+				if (terrConquered) {
 					endTurn(players[i]);    //draw a card if a territory is conquered
+					terrConquered = false;
+
+					if (playerOwns(&players[i]).size() == 0) {
+						players[i].isActive = false;
+					}
+				}
 			}
 		}
 		currentPlayer = 0;
+	}
+
+	for(i=currentPlayer; i<players.size(); i++) {
+		cout << endl << endl << players[i].getName() << ", is the awesome winner!!!" << endl;
 	}
 }
 
@@ -202,6 +221,8 @@ void Game::firstTurn()
 	int num = rand() % players.size();
 	bool continuePlacement = true;
 	int terrNum;
+	string answer = "";
+	bool validAnswer = false;
 
 	for(int i=0; i<numTroops.size(); i++)
 		numTroops[i] = initDistribution;
@@ -240,6 +261,14 @@ void Game::firstTurn()
 			cout << players[j].getName() << " choose a Territory to reinforce: ";
 			Display::resetTextColor();
 			cin >> terrNum;
+			//while(!validAnswer) {
+			//	cin >> answer;
+			//	terrNum = atoi(answer.c_str());
+			//	if(terrNum <= terrRet.size() && terrNum > -1)
+			//		validAnswer = true;
+			//	else
+			//		cout << "invalid answer" << endl;
+			//}
 			terrRet[terrNum-1]->addTroop();
 			numTroops[j]--;
 		}
@@ -256,18 +285,26 @@ void Game::firstTurn()
 }
 
 void Game::reinforcementsPhase(Player p) {
-	setTitle("Reinforcement Phase");
 	vector<Territory*> terrRet = playerOwns(&p);
 	int troopCount = 0, terrCount = terrRet.size(), terrNum;
 	troopCount = std::floor(terrCount/3.0);
 	if(troopCount < 3)
 		troopCount = 3;
-	for(int i = 0; i < terrRet.size(); i++) {
-		cout << i+1 << ". " << terrRet[i]->getName() << " (Count: " << terrRet[i]->getNumTroops() << ")" << endl;
-	}
+	
 	while(troopCount > 0) {
+		setTitle("Reinforcement Phase");
+		while(p.getHand()->size() > 5)
+			deck->addCard(*p.getHand());
+		if(p.getHand()->size() >= 3)
+			deck->addCard(*p.getHand());
+
+
+		for(int i = 0; i < terrRet.size(); i++) {
+			cout << i+1 << ". " << terrRet[i]->getName() << " (Count: " << terrRet[i]->getNumTroops() << ")" << endl;
+		}
 
 		Display::setTextColor(p.getColor());
+		cout << endl;
 		cout << p.getName() << " choose a Territory to reinforce: ";
 		Display::resetTextColor();
 		cin >> terrNum;
@@ -277,43 +314,57 @@ void Game::reinforcementsPhase(Player p) {
 }
 void Game::attackPhase(Player p) {
     while(true) {
-    vector<Territory *> attTerr;
-    // populate list of territories that the player can attack from (with # of troops in parenthesis)
-    for(int i = 0; i < territories.size(); i++) {
-        if(territories[i]->getOwner() == &p) {
-            attTerr.push_back(territories[i]);
-            cout << i << " - " << territories[i]->getName() << "(" << territories[i]->getNumTroops() << ")" << endl;
-        }
-    }
+	setTitle("ATTACK!!!");
+	while(true) {
+		vector<Territory *> attTerr;
+		// populate list of territories that the player can attack from (with # of troops in parenthesis)
+		for(int i = 0; i < territories.size(); i++) {
+			if(territories[i]->getOwner()->getColor() == p.getColor()) {
+				attTerr.push_back(territories[i]);
+				cout << i+1 << ". " << territories[i]->getName() << " (Count: " << territories[i]->getNumTroops() << ")" << endl;
+			}
+		}
     
-    int a=-1;
-    while(a<0 || a >= territories.size()) {
-        cout << "Enter the number corresponding to the territory from which you would like to attack : ";
-        cin >> a;
-        cout << '\n';
-    }
+		int a=-1;
+		while(a<0 || a >= territories.size()) {
+			Display::setTextColor(p.getColor());
+			cout << endl;
+			cout << p.getName() << " choose a Territory to attack from: ";
+			Display::resetTextColor();
+			cin >> a;
+			cout << '\n';
+		}
 
-    //populate a list of territories that the player can attack (with the # of troops in parenthesis)
-    vector<Territory *> defTerr = attTerr[a]->getTanget();
-    for(int i = 0; i < defTerr.size(); i++) {
-        if(defTerr[i]->getOwner() != &p) {
-            attTerr.push_back(territories[i]);
-            cout << i << " - " << territories[i]->getName() << "(" << territories[i]->getNumTroops() << ")" << endl;
-        }
-    }
+		//populate a list of territories that the player can attack (with the # of troops in parenthesis)
+		vector<Territory *> defTerr;
+		for(int i = 0; i < defTerr.size(); i++) {
+			if(defTerr[i]->getOwner()->getColor() != p.getColor()) {
+				attTerr.push_back(territories[i]);
+				cout << i+1 << ". " << territories[i]->getName() << " (Count:" << territories[i]->getNumTroops() << ")" << endl;
+			}
+		}
         
-    int d=-1;
-    while(d<0 || d >= territories.size()) {
-        cout << "Enter the number corresponding to the territory which you would like to attack : ";
-        cin >> d;
-        cout << '\n';
-    }
-        Assault battle(attTerr[a], defTerr[d]);  // instantiates object of type Assault that handles the battle
-            if(battle.attack()) {  //begins the assault
-                terrConquered = true;    //set player value that holds if a territory was conquered to true
-                battle.terrAcquisition(territories);
-            }
-    }
+		int d=-1;
+		while(d<0 || d >= territories.size()) {
+			Display::setTextColor(p.getColor());
+			cout << endl;
+			cout << p.getName() << " choose a Territory to attack: ";
+			Display::resetTextColor();
+			cin >> d;
+			cout << '\n';
+		}
+			Assault battle(attTerr[a], defTerr[d]);  // instantiates object of type Assault that handles the battle
+				if(battle.attack()) {  //begins the assault
+					terrConquered = true;    //set player value that holds if a territory was conquered to true
+					battle.terrAcquisition(territories);
+				}
+		}
+		char c;
+        cout << "Would you like to attack another territory? (y/n) :" ; 
+        cin >> c;   //get if user would like to attack again if he can
+        if(c=='n' || c =='N')
+            break;
+	}
 }
 void Game::fortifyPhase(Player p) {
 	vector<Territory*> terrRet = playerOwns(&p);
@@ -397,7 +448,7 @@ vector<Territory*> Game::playerOwns(Player *p) {
 	vector<Territory*> ret;
 
 	for (int i = 0; i < territories.size(); ++i) {
-		if (territories[i]->getOwner() == p) {
+		if (territories[i]->getOwner()->getColor() == p->getColor()) {
 			ret.push_back(territories[i]);
 		}
 	}

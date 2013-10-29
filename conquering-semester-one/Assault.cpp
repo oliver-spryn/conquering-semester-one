@@ -95,6 +95,11 @@ bool Assault::attack() {
             return true;
         }
         
+		cout << "\n\nAfter the assault:\n";
+		cout << "\t" << attTerr->getName() << " has " << attTerr->getNumTroops() << '\n';
+		cout << "\t" << defTerr->getName() << " has " << defTerr->getNumTroops() << '\n\n';
+
+
         char c;
         cout << "Would you like to attack again? (y/n) :" ; 
         cin >> c;   //get if user would like to attack again if he can
