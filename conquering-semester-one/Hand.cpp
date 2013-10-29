@@ -90,6 +90,17 @@ vector<Card> Hand::removeCard() {
 	return c;
 }
 
+vector<Card> Hand::flush()
+{
+	vector<Card> temp = hand;
+	hand.clear();
+	return temp;
+}
+void Hand::receiveHand(Hand h)
+{
+	hand.insert(hand.end(), h.hand.begin(), h.hand.end());
+}
+
 bool Hand::hasTerrCard(string terrName){
 	for(auto i = hand.begin(); i != hand.end(); i++) {
 		if(i->name == terrName)
