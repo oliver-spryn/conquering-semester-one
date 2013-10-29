@@ -118,8 +118,9 @@ void Assault::terrAcquisition(vector<Territory*> &terr) {
             break;
         }
     }
+
     if(!terrRemaining) {
-        attTerr->getOwner()->getHand()->addCards(attTerr->getOwner()->getHand()->flush());
+        attTerr->getOwner()->getHand()->receiveHand(attTerr->getOwner()->getHand()->flush());
         if(attTerr->getOwner()->getHand()->size()>4) {
             ;
         }
