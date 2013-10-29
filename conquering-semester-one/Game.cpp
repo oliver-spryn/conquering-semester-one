@@ -68,20 +68,20 @@ void Game::setup()
 {
 //Assign the colors
 	vector<int> colors;
-	colors.push_back(pink);
-	colors.push_back(green);
-	colors.push_back(yellow);
-	colors.push_back(blue);
 	colors.push_back(white);
 	colors.push_back(red);
+	colors.push_back(pink);
+	colors.push_back(yellow);
+	colors.push_back(blue);
+	colors.push_back(green);
 
 	vector<string> colorNames;
-	colorNames.push_back("pink");
-	colorNames.push_back("green");
-	colorNames.push_back("yellow");
-	colorNames.push_back("blue");
 	colorNames.push_back("white");
 	colorNames.push_back("red");
+	colorNames.push_back("pink");
+	colorNames.push_back("yellow");
+	colorNames.push_back("blue");
+	colorNames.push_back("green");
 
 //Get number of players
     int numPlayers = 2;
@@ -89,14 +89,17 @@ void Game::setup()
 	do {
 		setTitle("Beginning the Game");
 
-		if (numPlayers < 2 || numPlayers > 6) {
-			Display::coloredText("Try again...", red);
+		if (!cin || numPlayers < 2 || numPlayers > 6) {
+			Display::coloredText("Try again, dude...", red);
 			cout << endl;
 		}
 
+		cin.clear();
+		cin.sync();
+
 		cout << "Enter the number of players (2-6): ";
 		cin >> numPlayers;
-	} while (numPlayers < 2 || numPlayers > 6);
+	} while (!cin || numPlayers < 2 || numPlayers > 6);
 	
 
 //Build the set of information for creating the Player class
@@ -105,10 +108,12 @@ void Game::setup()
 
 	for(int i = 0; i < numPlayers; ++i) {
 	//Get name of player
-		string name;
+		char name[256];
 		
-		cout << "Player " << i + 1 << " enter your name: ";
-		cin >> name;
+		cout << "Player " << i + 1 << ", enter your name: ";
+
+		cin.sync();
+		cin.getline(name, 256);
         Player player(name,colors[i], deck);
 		
 	//Add the Player to the container
@@ -125,7 +130,7 @@ void Game::setup()
 
 	Display::resetTextColor();
 
-	cout << endl << "Please get the appropriate colored pieces for the game.";
+	cout << endl << "Please obtain the appropriate colored pieces for the game.";
 	pause();
 }
 void Game::play()
@@ -193,7 +198,6 @@ void Game::firstTurn()
 		    }
 	    }
       
-        cout << '\n';
         numTrues = 0;
         for(int i =0; i<numPlayers; i++)
             if(maybeFirst[i])
@@ -207,80 +211,20 @@ void Game::firstTurn()
 			Display::setTextColor(players[i].getColor());
 			cout << endl << players[i].getName();
 			Display::resetTextColor();
-			cout << " you go first!" << endl;
+			cout << " rolled the highest dice, and will go first!" << endl;
 			currentPlayer = i;
 			break;
 		}
     }
 
+	pause();
+	Display::clear();
+
 	//distributing soldiers.
-	vector<int> numTroops(players.size());
-	int initDistribution = (deck->size() / players.size());
-	int remainder = deck->size() % players.size();
-	int initRemainder = remainder;
-	int num = rand() % players.size();
-	bool continuePlacement = true;
-	int terrNum;
-	string answer = "";
-	bool validAnswer = false;
+	initialTerrDistribution();
+	initialTroopDistribution();
 
-	for(int i=0; i<numTroops.size(); i++)
-		numTroops[i] = initDistribution;
-	for(int i=numTroops.size()-1; remainder > 0; i--) {
-		numTroops[i]++;
-		remainder--;
-	}
-
-	for(int i=0; i<territories.size(); i++) {
-		while(numTroops[num] == 0)
-			num = rand() % players.size();
-		
-			territories[i]->addTroop();
-			territories[i]->setOwner(&players[num]);
-			numTroops[num]--;
-	}
-
-	for(int i=0; i<numTroops.size(); i++)
-		numTroops[i] = INITIAL_TROOPS[players.size()-2];
-	for(int i=numTroops.size()-1; remainder > 0; i--) {
-		numTroops[i]--;
-		remainder--;
-	}
-	while(continuePlacement) {
-		for(int j=0; j<players.size(); j++) {
-			if(numTroops[j] == 0)
-				continue;
-			vector<Territory*> terrRet = playerOwns(&players[j]);
-			Display::clear();
-			setTitle("Initial Troop Placement");
-			for(int i = 0; i < terrRet.size(); i++) {
-				cout << i+1 << ". " << terrRet[i]->getName() << "(" << terrRet[i]->getNumTroops() << ")" << endl;
-			}
-			cout << endl;
-			Display::setTextColor(players[j].getColor());
-			cout << players[j].getName() << " choose a Territory to reinforce: ";
-			Display::resetTextColor();
-			cin >> terrNum;
-			//while(!validAnswer) {
-			//	cin >> answer;
-			//	terrNum = atoi(answer.c_str());
-			//	if(terrNum <= terrRet.size() && terrNum > -1)
-			//		validAnswer = true;
-			//	else
-			//		cout << "invalid answer" << endl;
-			//}
-			terrRet[terrNum-1]->addTroop();
-			numTroops[j]--;
-		}
-		int i=0;
-		for(i; i<players.size(); i++) {
-			if(numTroops[i] != 0)
-				break;
-		}
-		if(i==players.size() && numTroops[i-1] == 0)
-			continuePlacement = false;
-	}
-	
+	Display::clear();
 	pause();
 }
 
@@ -300,7 +244,7 @@ void Game::reinforcementsPhase(Player p) {
 
 
 		for(int i = 0; i < terrRet.size(); i++) {
-			cout << i+1 << ". " << terrRet[i]->getName() << " (Count: " << terrRet[i]->getNumTroops() << ")" << endl;
+			cout << i+1 << ". " << terrRet[i]->getName() << " (Troops: " << terrRet[i]->getNumTroops() << ")" << endl;
 		}
 
 		Display::setTextColor(p.getColor());
@@ -321,7 +265,7 @@ void Game::attackPhase(Player p) {
 		for(int i = 0; i < territories.size(); i++) {
 			if(territories[i]->getOwner()->getColor() == p.getColor()) {
 				attTerr.push_back(territories[i]);
-				cout << i+1 << ". " << territories[i]->getName() << " (Count: " << territories[i]->getNumTroops() << ")" << endl;
+				cout << i+1 << ". " << territories[i]->getName() << " (Troops: " << territories[i]->getNumTroops() << ")" << endl;
 			}
 		}
     
@@ -340,7 +284,7 @@ void Game::attackPhase(Player p) {
 		for(int i = 0; i < defTerr.size(); i++) {
 			if(defTerr[i]->getOwner()->getColor() != p.getColor()) {
 				attTerr.push_back(territories[i]);
-				cout << i+1 << ". " << territories[i]->getName() << " (Count:" << territories[i]->getNumTroops() << ")" << endl;
+				cout << i+1 << ". " << territories[i]->getName() << " (Troops:" << territories[i]->getNumTroops() << ")" << endl;
 			}
 		}
         
@@ -374,7 +318,7 @@ void Game::fortifyPhase(Player p) {
 		Display::clear();
 
 		for(int i = 0; i < terrRet.size(); i++) {
-			cout << i+1 << ". " << terrRet[i]->getName() << " (Count: " << terrRet[i]->getNumTroops() << ")" << endl;
+			cout << i+1 << ". " << terrRet[i]->getName() << " (Troops: " << terrRet[i]->getNumTroops() << ")" << endl;
 		}
 
 		cout << "Choose a Territory to relocate from: ";
@@ -398,7 +342,7 @@ void Game::fortifyPhase(Player p) {
 		vector<Territory*> tangent = terrRet[terrNumF - 1]->getTanget();
 
 		for(int i = 0; i < tangent.size(); ++i) {
-			cout << i+1 << ". " << tangent[i]->getName() << " (Count: " << tangent[i]->getNumTroops() << ")" << endl;
+			cout << i+1 << ". " << tangent[i]->getName() << " (Troops: " << tangent[i]->getNumTroops() << ")" << endl;
 		}
 
 		cout << "Choose a Territory to relocate to: ";
@@ -454,4 +398,91 @@ vector<Territory*> Game::playerOwns(Player *p) {
 	}
 
 	return ret;
+}
+
+void Game::initialTerrDistribution()
+{
+	vector<int> numTroops(players.size());
+	int initDistribution = (deck->size() / players.size());
+	int remainder = territories.size() % players.size();
+	int initRemainder = remainder;
+	int num = rand() % players.size();
+
+	for(int i=0; i<numTroops.size(); i++)
+		numTroops[i] = initDistribution;
+	for(int i=numTroops.size()-1; remainder > 0; i--) {
+		numTroops[i]++;
+		remainder--;
+	}
+
+	for(int i=0; i<territories.size(); i++) {
+		while(numTroops[num] == 0)
+			num = rand() % players.size();
+		
+			territories[i]->addTroop();
+			territories[i]->setOwner(&players[num]);
+			numTroops[num]--;
+	}
+}
+void Game::initialTroopDistribution()
+{
+	vector<int> numTroops(players.size());
+	bool continuePlacement = true;
+	int terrNum;
+	string answer = "";
+	bool validAnswer = false;
+	int remainder = territories.size() % players.size();
+
+	for(int i=0; i<numTroops.size(); i++)
+		numTroops[i] = INITIAL_TROOPS[players.size()-2];
+	for(int i=numTroops.size()-1; remainder > 0; i--) {
+		numTroops[i]--;
+		remainder--;
+	}
+
+	while(continuePlacement) {
+		for(int j=0; j<players.size(); j++) {
+			if(numTroops[j] == 0)
+				continue;
+			vector<Territory*> terrRet = playerOwns(&players[j]);
+			Display::clear();
+			setTitle("Initial Troop Placement");
+			for(int i = 0; i < terrRet.size(); i++) {
+				cout << i+1 << ". ";
+				
+				if (i + 1 < 10) {
+					cout << " ";
+				}
+
+				cout << terrRet[i]->getName() << "(" << terrRet[i]->getNumTroops() << ")" << endl;
+			}
+			cout << endl;
+			Display::setTextColor(players[j].getColor());
+			cout << players[j].getName() << " choose a Territory to reinforce: ";
+			Display::resetTextColor();
+
+			while(!validAnswer) {
+				cin >> answer;
+				terrNum = atoi(answer.c_str());
+				if(terrNum <= terrRet.size() && terrNum > 0)
+					validAnswer = true;
+				else {
+					Display::setTextColor(players[j].getColor());
+					cout << "invalid answer" << endl;
+					cout << players[j].getName() << " choose a Territory to reinforce: ";
+					Display::resetTextColor();
+				}
+			}
+			validAnswer = false;
+			terrRet[terrNum-1]->addTroop();
+			numTroops[j]--;
+		}
+		int i=0;
+		for(i; i<players.size(); i++) {
+			if(numTroops[i] != 0)
+				break;
+		}
+		if(i==players.size() && numTroops[i-1] == 0)
+			continuePlacement = false;
+	}
 }

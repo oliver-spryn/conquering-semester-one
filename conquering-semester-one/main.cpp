@@ -7,6 +7,6 @@ int main() {
 
 	risk.setup();
 	risk.play();
-
+	
 	return 0;
 }

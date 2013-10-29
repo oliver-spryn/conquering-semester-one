@@ -45,6 +45,9 @@ private:
 
 	vector<Territory*> playerOwns(Player *p);
 
+	void initialTerrDistribution();
+	void initialTroopDistribution();
+
 	int roll();
 	void pause();
 	void setTitle(string title);
