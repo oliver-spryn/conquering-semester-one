@@ -121,9 +121,7 @@ void Assault::terrAcquisition(vector<Territory*> &terr) {
 
     if(!terrRemaining) {
         attTerr->getOwner()->getHand()->receiveHand(attTerr->getOwner()->getHand()->flush());
-        if(attTerr->getOwner()->getHand()->size()>4) {
-            ;
-        }
+        defTerr->getOwner()->isActive = false;
     }
 
     defTerr->setOwner(attTerr->getOwner());
