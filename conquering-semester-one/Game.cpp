@@ -235,14 +235,14 @@ void Game::attackPhase(Player p) {
     vector<Territory *> attTerr;
     // populate list of territories that the player can attack from (with # of troops in parenthesis)
     for(int i = 0; i < territories.size(); i++) {
-        if(territories[i]->getOwner() == p) {
+        if(territories[i]->getOwner() == &p) {
             attTerr.push_back(territories[i]);
             cout << i << " - " << territories[i]->getName() << "(" << territories[i]->getNumTroops() << ")" << endl;
         }
     }
     
     int a=-1;
-    while(a<0 || a >= territories[i]->size()) {
+    while(a<0 || a >= territories.size()) {
         cout << "Enter the number corresponding to the territory from which you would like to attack : ";
         cin >> a;
         cout << '\n';
@@ -251,14 +251,14 @@ void Game::attackPhase(Player p) {
     //populate a list of territories that the player can attack (with the # of troops in parenthesis)
     vector<Territory *> defTerr = attTerr[a]->getTanget();
     for(int i = 0; i < defTerr.size(); i++) {
-        if(defTerr[i]->getOwner() != p) {
+        if(defTerr[i]->getOwner() != &p) {
             attTerr.push_back(territories[i]);
             cout << i << " - " << territories[i]->getName() << "(" << territories[i]->getNumTroops() << ")" << endl;
         }
     }
         
     int d=-1;
-    while(d<0 || d >= territories[i]->size()) {
+    while(d<0 || d >= territories.size()) {
         cout << "Enter the number corresponding to the territory which you would like to attack : ";
         cin >> d;
         cout << '\n';
@@ -266,7 +266,7 @@ void Game::attackPhase(Player p) {
         Assault battle(attTerr[a], defTerr[d]);  // instantiates object of type Assault that handles the battle
             if(battle.attack()) {  //begins the assault
                 terrConquered = true;    //set player value that holds if a territory was conquered to true
-                battle.terrAcquisition();
+                battle.terrAcquisition(territories);
             }
     }
 }
