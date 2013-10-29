@@ -1,42 +1,40 @@
-﻿Build started 10/28/2013 5:03:52 PM.
+﻿Build started 10/28/2013 8:11:44 PM.
      1>Project "C:\Users\YOUNGGG1\Dropbox\Year 3 Semester 1\Comp 322 Advanced Programming\conquering-semester-one\source\conquering-semester-one\conquering-semester-one.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Touching "Debug\conquering-semester-one.unsuccessfulbuild".
        ClCompile:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Game.cpp
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Assault.cpp Game.cpp main.cpp
+         main.cpp
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\display.h(30): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\troophandler.h(31): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\troophandler.h(32): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
          Game.cpp
      1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\display.h(30): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\troophandler.h(31): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\troophandler.h(32): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
      1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\game.cpp(6): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\game.cpp(154): warning C4018: '<' : signed/unsigned mismatch
-       ManifestResourceCompile:
-         All outputs are up-to-date.
-       Link:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\YOUNGGG1\Dropbox\Year 3 Semester 1\Comp 322 Advanced Programming\conquering-semester-one\source\Debug\conquering-semester-one.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\conquering-semester-one.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\YOUNGGG1\Dropbox\Year 3 Semester 1\Comp 322 Advanced Programming\conquering-semester-one\source\Debug\conquering-semester-one.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\YOUNGGG1\Dropbox\Year 3 Semester 1\Comp 322 Advanced Programming\conquering-semester-one\source\Debug\conquering-semester-one.lib" /MACHINE:X86 "Debug\conquering-semester-one.exe.embed.manifest.res"
-         Debug\Assault.obj
-         Debug\BaseException.obj
-         Debug\Card.obj
-         Debug\CardGroup.obj
-         Debug\Deck.obj
-         Debug\Display.obj
-         Debug\DistributeParametersInvalid.obj
-         Debug\Game.obj
-         Debug\Hand.obj
-         Debug\main.obj
-         Debug\Player.obj
-         Debug\Territory.obj
-         Debug\TroopHandler.obj
-         Debug\TroopModifierOutOfRange.obj
-       Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\conquering-semester-one.exe.embed.manifest" /manifest "Debug\conquering-semester-one.exe.intermediate.manifest"
-         All outputs are up-to-date.
-       LinkEmbedManifest:
-         All outputs are up-to-date.
-         conquering-semester-one.vcxproj -> C:\Users\YOUNGGG1\Dropbox\Year 3 Semester 1\Comp 322 Advanced Programming\conquering-semester-one\source\Debug\conquering-semester-one.exe
-       FinalizeBuildStatus:
-         Deleting file "Debug\conquering-semester-one.unsuccessfulbuild".
-         Touching "Debug\conquering-semester-one.lastbuildstate".
-     1>Done Building Project "C:\Users\YOUNGGG1\Dropbox\Year 3 Semester 1\Comp 322 Advanced Programming\conquering-semester-one\source\conquering-semester-one\conquering-semester-one.vcxproj" (build target(s)).
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\game.cpp(32): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\game.cpp(41): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\game.cpp(122): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\game.cpp(195): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\game.cpp(210): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\game.cpp(214): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\game.cpp(296): warning C4018: '<' : signed/unsigned mismatch
+         Assault.cpp
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\display.h(30): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\troophandler.h(31): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\troophandler.h(32): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\assault.cpp(75): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\assault.cpp(75): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\assault.cpp(115): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\assault.cpp(117): warning C4553: '==' : operator has no effect; did you intend '='?
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\assault.cpp(122): error C2039: 'addCards' : is not a member of 'Hand'
+                 c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\hand.h(15) : see declaration of 'Hand'
+     1>c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\assault.cpp(122): error C2039: 'flush' : is not a member of 'Hand'
+                 c:\users\younggg1\dropbox\year 3 semester 1\comp 322 advanced programming\conquering-semester-one\source\conquering-semester-one\hand.h(15) : see declaration of 'Hand'
+         Generating Code...
+     1>Done Building Project "C:\Users\YOUNGGG1\Dropbox\Year 3 Semester 1\Comp 322 Advanced Programming\conquering-semester-one\source\conquering-semester-one\conquering-semester-one.vcxproj" (build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:02.24
+Time Elapsed 00:00:02.76

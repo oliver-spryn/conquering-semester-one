@@ -19,6 +19,7 @@ public:
 
 	friend bool operator == (Player& left, Player& right);
 	friend bool operator != (Player& left, Player& right);
+	bool isActive;
 
 private:
 	string name;

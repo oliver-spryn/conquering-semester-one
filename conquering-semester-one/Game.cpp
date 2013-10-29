@@ -120,11 +120,14 @@ void Game::play()
 	int i = 0;
 	while(true){
 		for(i=currentPlayer; i<players.size(); i++){
-			reinforcementsPhase(players[i]);    //reinforcements phase
-		    attackPhase(players[i]);    //attack phase
-			fortifyPhase(players[i]);    //fortify phase
-			if (terrConquered)
-				endTurn(players[i]);    //draw a card if a territory is conquered
+			if(players[i].isActive)
+			{
+				reinforcementsPhase(players[i]);    //reinforcements phase
+				attackPhase(players[i]);    //attack phase
+				fortifyPhase(players[i]);    //fortify phase
+				if (terrConquered)
+					endTurn(players[i]);    //draw a card if a territory is conquered
+			}
 		}
 		currentPlayer = 0;
 	}
@@ -199,13 +202,25 @@ void Game::firstTurn()
 		remainder--;
 	}
 
-
-
 	pause();
 }
 
 void Game::reinforcementsPhase(Player p) {
-    ;
+	vector<Territory*> terrRet = playerOwns(&p);
+	int troopCount = 0, terrCount = terrRet.size(), terrNum;
+	troopCount = std::floor(terrCount/3.0);
+	if(troopCount < 3)
+		troopCount = 3;
+	for(int i = 0; i < terrRet.size(); i++) {
+		cout << i+1 << ". " << terrRet[i]->getName() << "(" << terrRet[i]->getNumTroops() << ")" << endl;
+	}
+	while(troopCount > 0) {
+
+		cout << "Choose a Territory to reinforce: ";
+		cin >> terrNum;
+		terrRet[terrNum-1]->addTroop();
+		troopCount--;
+	}
 }
 void Game::attackPhase(Player p) {
     while(true) {
@@ -214,7 +229,7 @@ void Game::attackPhase(Player p) {
     for(int i = 0; i < territories.size(); i++) {
         if(territories[i]->getOwner() == p) {
             attTerr.push_back(territories[i]);
-            cout << i << " - " << territories[i]->getName() << "(" << territories[i]->getNumTroops << ")" << endl;
+            cout << i << " - " << territories[i]->getName() << "(" << territories[i]->getNumTroops() << ")" << endl;
         }
     }
     
@@ -230,7 +245,7 @@ void Game::attackPhase(Player p) {
     for(int i = 0; i < defTerr.size(); i++) {
         if(defTerr[i]->getOwner() != p) {
             attTerr.push_back(territories[i]);
-            cout << i << " - " << territories[i]->getName() << "(" << territories[i]->getNumTroops << ")" << endl;
+            cout << i << " - " << territories[i]->getName() << "(" << territories[i]->getNumTroops() << ")" << endl;
         }
     }
         
@@ -248,7 +263,14 @@ void Game::attackPhase(Player p) {
     }
 }
 void Game::fortifyPhase(Player p) {
-    ;
+	vector<Territory*> terrRet = playerOwns(&p);
+	int terrNum;
+	for(int i = 0; i < terrRet.size(); i++) {
+		cout << i+1 << ". " << terrRet[i]->getName() << "(" << terrRet[i]->getNumTroops() << ")" << endl;
+	}
+	cout << "Choose a Territory to fortify: ";
+	cin >> terrNum;
+	;
 }
 
 void Game::endTurn(Player p) { 
@@ -256,7 +278,6 @@ void Game::endTurn(Player p) {
     //if it was, the player gets a card and sets value back to false
 	h->addCard(*deck);
 	delete h;
-
 	terrConquered = false;
 }
 
@@ -280,7 +301,7 @@ void Game::pause() {
 	_getch();
 }
 
-vector<Territory*> Game::playerOwns(Player &p) {
+vector<Territory*> Game::playerOwns(Player *p) {
 	vector<Territory*> ret;
 
 	for (int i = 0; i < territories.size(); ++i) {

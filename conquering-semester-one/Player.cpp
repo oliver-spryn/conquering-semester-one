@@ -4,6 +4,7 @@ Player::Player(string playerName, int playerColor, Deck* playerCards) {
 	allCards = playerCards;
 	name = playerName;
 	color = playerColor;
+	isActive = true;
 }
 
 bool operator == (Player& left, Player& right)

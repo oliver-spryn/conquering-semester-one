@@ -40,7 +40,7 @@ private:
 	vector<string> text;
 	vector<char> align;
 
-	vector<Territory*> playerOwns(Player &p);
+	vector<Territory*> playerOwns(Player *p);
 
 	int roll();
 	void pause();
