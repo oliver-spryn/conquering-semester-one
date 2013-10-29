@@ -119,7 +119,7 @@ void Game::play()
 	firstTurn();
 	int i = 0;
 	while(true){
-		for(i=currentPlayer; i<players.size(); i++){
+		for(i=currentPlayer; i<players.size(); i++) {
 			if(players[i].isActive)
 			{
 				reinforcementsPhase(players[i]);    //reinforcements phase
@@ -212,7 +212,7 @@ void Game::reinforcementsPhase(Player p) {
 	if(troopCount < 3)
 		troopCount = 3;
 	for(int i = 0; i < terrRet.size(); i++) {
-		cout << i+1 << ". " << terrRet[i]->getName() << "(" << terrRet[i]->getNumTroops() << ")" << endl;
+		cout << i+1 << ". " << terrRet[i]->getName() << " (Count: " << terrRet[i]->getNumTroops() << ")" << endl;
 	}
 	while(troopCount > 0) {
 
@@ -264,13 +264,52 @@ void Game::attackPhase(Player p) {
 }
 void Game::fortifyPhase(Player p) {
 	vector<Territory*> terrRet = playerOwns(&p);
-	int terrNum;
-	for(int i = 0; i < terrRet.size(); i++) {
-		cout << i+1 << ". " << terrRet[i]->getName() << "(" << terrRet[i]->getNumTroops() << ")" << endl;
-	}
-	cout << "Choose a Territory to fortify: ";
-	cin >> terrNum;
-	;
+	int terrNumF, terrNumT, troopCount;
+
+	do {
+		Display::clear();
+
+		for(int i = 0; i < terrRet.size(); i++) {
+			cout << i+1 << ". " << terrRet[i]->getName() << " (Count: " << terrRet[i]->getNumTroops() << ")" << endl;
+		}
+
+		cout << "Choose a Territory to relocate from: ";
+		cin >> terrNumF;
+
+	//Check to see if the input is valid
+		if (terrNumF <= 0 || terrNumF > terrRet.size() - 1) {
+			continue;
+		}
+
+		cout << "Choose a number of troops to move: ";
+		cin >> troopCount;
+
+		if (troopCount < 0 && terrRet[terrNumF - 1]->getNumTroops() - 1 < troopCount) {
+			continue;
+		}
+
+		Display::clear();
+
+	//Display the tangent territories
+		vector<Territory*> tangent = terrRet[terrNumF - 1]->getTanget();
+
+		for(int i = 0; i < tangent.size(); ++i) {
+			cout << i+1 << ". " << tangent[i]->getName() << " (Count: " << tangent[i]->getNumTroops() << ")" << endl;
+		}
+
+		cout << "Choose a Territory to relocate to: ";
+		cin >> terrNumT;
+
+	//Check to see if the input is valid
+		if (terrNumF <= 0 || terrNumF > tangent.size() - 1) {
+			continue;
+		}
+
+		terrRet[terrNumF - 1]->delTroop(troopCount);
+		tangent[terrNumT - 1]->addTroop(troopCount);
+
+		break;
+	} while(true);
 }
 
 void Game::endTurn(Player p) { 
