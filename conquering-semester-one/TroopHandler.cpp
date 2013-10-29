@@ -9,7 +9,7 @@
  * @return void
 */
 
-TroopHandler::TroopHandler() : numTroops(1) { }
+TroopHandler::TroopHandler() : numTroops(0) { }
 
 /**
  * Add a troop to this territory. If no parameters are supplied,

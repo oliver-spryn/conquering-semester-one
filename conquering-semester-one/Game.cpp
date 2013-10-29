@@ -8,10 +8,11 @@ Game::Game() : deck(new Deck("card-list.txt")), terrConquered(false) {
 	align.push_back('C');
 
 //Initialize teh Territory pointerz :)
-	ifstream fin;
+	ifstream fin, fin2;
 	char terr[256];
 	char tangent[256];
 	fin.open("territory-list.txt");
+	fin2.open("territory-list.txt");
 	
 //Add each of the territories to a container
 	while(!fin.eof()) {
@@ -23,16 +24,16 @@ Game::Game() : deck(new Deck("card-list.txt")), terrConquered(false) {
 	}
 
 //Start anew <--- poetic ;)
-	fin.seekg(0);
+//	fin.seekg(0);
 
 //Add each of the tangent territories
 	string convert;
-	fin.getline(tangent, 256); // Get the first territory out of the way ;)
+	fin2.getline(tangent, 256); // Get the first territory out of the way ;)
 
 	for(int i = 0; i < territories.size(); ++i) {
 	//Lines that begin with a tab indicate tangent territories
 		while(true) {
-			fin.getline(tangent, 256);
+			fin2.getline(tangent, 256);
 
 			if (tangent[0] == '\t') {
 				convert = tangent;
@@ -48,6 +49,9 @@ Game::Game() : deck(new Deck("card-list.txt")), terrConquered(false) {
 			}
 		}
 	}
+
+	fin.close();
+	fin2.close();
 }
 
 void Game::setup()
@@ -211,7 +215,8 @@ void Game::firstTurn()
 			num = rand() % players.size();
 		
 			territories[i]->addTroop();
-			territories[i]->setOwner(&players[num]);	
+			territories[i]->setOwner(&players[num]);
+			numTroops[num]--;
 	}
 
 	for(int i=0; i<numTroops.size(); i++)
@@ -225,10 +230,15 @@ void Game::firstTurn()
 			if(numTroops[j] == 0)
 				continue;
 			vector<Territory*> terrRet = playerOwns(&players[j]);
+			Display::clear();
+			setTitle("Initial Troop Placement");
 			for(int i = 0; i < terrRet.size(); i++) {
 				cout << i+1 << ". " << terrRet[i]->getName() << "(" << terrRet[i]->getNumTroops() << ")" << endl;
 			}
-			cout << "Choose a Territory to reinforce: ";
+			cout << endl;
+			Display::setTextColor(players[j].getColor());
+			cout << players[j].getName() << " choose a Territory to reinforce: ";
+			Display::resetTextColor();
 			cin >> terrNum;
 			terrRet[terrNum-1]->addTroop();
 			numTroops[j]--;
@@ -246,6 +256,7 @@ void Game::firstTurn()
 }
 
 void Game::reinforcementsPhase(Player p) {
+	setTitle("Reinforcement Phase");
 	vector<Territory*> terrRet = playerOwns(&p);
 	int troopCount = 0, terrCount = terrRet.size(), terrNum;
 	troopCount = std::floor(terrCount/3.0);
@@ -256,7 +267,9 @@ void Game::reinforcementsPhase(Player p) {
 	}
 	while(troopCount > 0) {
 
-		cout << "Choose a Territory to reinforce: ";
+		Display::setTextColor(p.getColor());
+		cout << p.getName() << " choose a Territory to reinforce: ";
+		Display::resetTextColor();
 		cin >> terrNum;
 		terrRet[terrNum-1]->addTroop();
 		troopCount--;
