@@ -129,8 +129,17 @@ void Assault::terrAcquisition(vector<Territory*> &terr) {
     attTerr->delTroop();
     defTerr->addTroop();
     
-    //check if attTerr->getNumTroops()>0
-        // if true, get num to move;
+    if(attTerr->getNumTroops()>1) {
+        int t = -1;
+        while(t > attTerr->getNumTroops() || t < 0) {
+            cout << "There are " << attTerr->getNumTroops()-1 << " troops you can move from " << attTerr->getName() << " to " << defTerr->getName() << ".\n";
+            cout << "Enter the number of troops you would like to move: ";
+            cin >> t;
+        }
+        attTerr->delTroop(t);
+        defTerr->addTroop(t);
+    }
+        
 }
 
 int Assault::roll() {

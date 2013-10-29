@@ -15,6 +15,9 @@
 #include "Display.h"
 #include "Player.h"
 #include "Territory.h"
+#include <iostream>
+using std::cout;
+using std::cin;
 #include <vector>
 #include <algorithm>
 using std::vector;
