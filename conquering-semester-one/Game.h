@@ -20,6 +20,8 @@ using std::vector;
 #ifndef GAME_H
 #define GAME_H
 
+const int INITIAL_TROOPS[5] = {40, 35, 30, 25, 20};
+
 class Game
 {
 public:
@@ -46,6 +48,7 @@ private:
 	void pause();
 	void setTitle(string title);
 	int currentPlayer;
-	bool terrConquered;};
+	bool terrConquered;
+};
 
 #endif

@@ -194,6 +194,10 @@ void Game::firstTurn()
 	vector<int> numTroops(players.size());
 	int initDistribution = (deck->size() / players.size());
 	int remainder = deck->size() % players.size();
+	int initRemainder = remainder;
+	int num = rand() % players.size();
+	bool continuePlacement = true;
+	int terrNum;
 
 	for(int i=0; i<numTroops.size(); i++)
 		numTroops[i] = initDistribution;
@@ -201,15 +205,43 @@ void Game::firstTurn()
 		numTroops[i]++;
 		remainder--;
 	}
-	int num = rand() % players.size();
+
 	for(int i=0; i<territories.size(); i++) {
 		while(numTroops[num] == 0)
 			num = rand() % players.size();
 		
 			territories[i]->addTroop();
-			territories[i]->setOwner(&players[i]);	
+			territories[i]->setOwner(&players[num]);	
 	}
 
+	for(int i=0; i<numTroops.size(); i++)
+		numTroops[i] = INITIAL_TROOPS[players.size()-2];
+	for(int i=numTroops.size()-1; remainder > 0; i--) {
+		numTroops[i]--;
+		remainder--;
+	}
+	while(continuePlacement) {
+		for(int j=0; j<players.size(); j++) {
+			if(numTroops[j] == 0)
+				continue;
+			vector<Territory*> terrRet = playerOwns(&players[j]);
+			for(int i = 0; i < terrRet.size(); i++) {
+				cout << i+1 << ". " << terrRet[i]->getName() << "(" << terrRet[i]->getNumTroops() << ")" << endl;
+			}
+			cout << "Choose a Territory to reinforce: ";
+			cin >> terrNum;
+			terrRet[terrNum-1]->addTroop();
+			numTroops[j]--;
+		}
+		int i=0;
+		for(i; i<players.size(); i++) {
+			if(numTroops[i] != 0)
+				break;
+		}
+		if(i==players.size() && numTroops[i-1] == 0)
+			continuePlacement = false;
+	}
+	
 	pause();
 }
 
