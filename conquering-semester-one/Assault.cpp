@@ -94,10 +94,12 @@ bool Assault::attack() {
         if(defTerr->getNumTroops() == 0) { //checks if there are any troops on defTerr
             return true;
         }
-
-        //get if user would like to attack again if he can
-            //if he does, do nothing
-            //if not, break;
+        
+        char c;
+        cout << "Would you like to attack again? (y/n) :" ; 
+        cin >> c;   //get if user would like to attack again if he can
+        if(c=='n' || c =='N')
+            break;
     }
     return false;
 }
