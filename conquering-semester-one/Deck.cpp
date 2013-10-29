@@ -50,6 +50,13 @@ void Deck::addCard(CardGroup& group) //there is a problem here...hand.removeCard
 {
 	vector<Card> v;
 	v = group.removeCard();
+	while(v.size() == 1 && group.size() >= 5) {
+		v.clear();
+		v = group.removeCard();
+	}
+	if(v.size() == 1)
+		return;
+
 	for(int i=0; i<v.size(); i++) {
 		deck.push_front(v[i]);
 
