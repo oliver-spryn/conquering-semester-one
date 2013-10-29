@@ -96,9 +96,9 @@ vector<Card> Hand::flush()
 	hand.clear();
 	return temp;
 }
-void Hand::receiveHand(Hand h)
+void Hand::receiveHand(vector<Card> h)
 {
-	hand.insert(hand.end(), h.hand.begin(), h.hand.end());
+	hand.insert(hand.end(), h.begin(), h.end());
 }
 
 bool Hand::hasTerrCard(string terrName){
