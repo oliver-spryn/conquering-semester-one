@@ -201,6 +201,14 @@ void Game::firstTurn()
 		numTroops[i]++;
 		remainder--;
 	}
+	int num = rand() % players.size();
+	for(int i=0; i<territories.size(); i++) {
+		while(numTroops[num] == 0)
+			num = rand() % players.size();
+		
+			territories[i]->addTroop();
+			territories[i]->setOwner(&players[i]);	
+	}
 
 	pause();
 }
@@ -277,7 +285,7 @@ void Game::endTurn(Player p) {
 	Hand* h = p.getHand();
     //if it was, the player gets a card and sets value back to false
 	h->addCard(*deck);
-	delete h;
+	delete h;												//**********may be an issue
 	terrConquered = false;
 }
 
