@@ -148,8 +148,7 @@ void Assault::terrAcquisition(vector<Territory*> &terr) {
         }
         attTerr->delTroop(t);
         defTerr->addTroop(t);
-    }
-        
+    }        
 }
 
 int Assault::roll() {
