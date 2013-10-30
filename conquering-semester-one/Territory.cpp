@@ -83,9 +83,9 @@ vector<Territory*> Territory::getTanget() {
  * @return bool                 Whether this territory is tangent to the one passed in as an argument
 */
 
-bool Territory::isTangentTo(Territory& territory) {
+bool Territory::isTangentTo(Territory* territory) {
 	for (vector<Territory*>::iterator it = this->tangent.begin(); it != this->tangent.end(); ++it) {
-		if (**it == territory) {
+		if (*it == territory) {
 			return true;
 		}
 	}

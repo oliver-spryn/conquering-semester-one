@@ -44,8 +44,8 @@ void TroopHandler::addTroop(int add) throw(TroopModifierOutOfRange) {
 */
 
 void TroopHandler::delTroop(int del) throw(TroopModifierOutOfRange) {
-	if (this->numTroops - del < 1) {
-		throw new TroopModifierOutOfRange("You must have at least 1 troop on this territory");
+	if (this->numTroops - del < 0) {
+		throw new TroopModifierOutOfRange("Somehow you have a negative number of troops. Please contact developers");
 	} else if (del < 0) {
 		throw new TroopModifierOutOfRange("You must remove 0 or more troops from this territory");
 	} else {

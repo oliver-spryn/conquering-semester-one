@@ -97,7 +97,7 @@ bool Assault::attack() {
         
 		cout << "\n\nAfter the assault:\n";
 		cout << "\t" << attTerr->getName() << " has " << attTerr->getNumTroops() << '\n';
-		cout << "\t" << defTerr->getName() << " has " << defTerr->getNumTroops() << '\n\n';
+		cout << "\t" << defTerr->getName() << " has " << defTerr->getNumTroops() << "\n\n";
 
 
         char c;
@@ -105,6 +105,7 @@ bool Assault::attack() {
         cin >> c;   //get if user would like to attack again if he can
         if(c=='n' || c =='N')
             break;
+        cout << "\n\n";
     }
     return false;
 }

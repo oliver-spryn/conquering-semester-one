@@ -39,7 +39,7 @@ public :
 	string getName();
 	Player* getOwner();
 	vector<Territory*> getTanget();
-	bool isTangentTo(Territory&);
+	bool isTangentTo(Territory*);
 	void setOwner(Player*);
 };
 
