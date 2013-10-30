@@ -299,39 +299,42 @@ void Game::attackPhase(Player p) {
 				    cout << defTerr.size() << ". " << territories[i]->getName() << " (Troops:" << territories[i]->getNumTroops() << ")" << endl;
 			    }
 		    }
-        
-		    int d=-1;
-		    do {
-		        Display::setTextColor(p.getColor());
-			    cout << endl;
-			    cout << p.getName() << " choose a Territory to attack: ";
-			    Display::resetTextColor();
-			    cin >> d;
-                cout << '\n';
-
-                if (!cin || d<1 || d > territories.size()) {
-			        Display::coloredText("Try again, dude...", red);
+            
+            if(defTerr.size() > 0) {
+		        int d=-1;
+		        do {
+		            Display::setTextColor(p.getColor());
 			        cout << endl;
-		        }
+			        cout << p.getName() << " choose a Territory to attack: ";
+			        Display::resetTextColor();
+			        cin >> d;
+                    cout << '\n';
+
+                    if (!cin || d<1 || d > territories.size()) {
+			            Display::coloredText("Try again, dude...", red);
+			            cout << endl;
+		            }
                 
-		        cin.clear();
-		        cin.sync();
-	        } while (!cin || d<1 || d > territories.size());
+		            cin.clear();
+		            cin.sync();
+	            } while (!cin || d<1 || d > territories.size());
 
-
-
-			Assault battle(attTerr[a], defTerr[d]);  // instantiates object of type Assault that handles the battle
-			if(battle.attack()) {  //begins the assault
-				terrConquered = true;    //set player value that holds if a territory was conquered to true
-				battle.terrAcquisition(territories);
-			}
-        }
-		char c;
+                Assault battle(attTerr[a-1], defTerr[d-1]);  // instantiates object of type Assault that handles the battle
+			    
+                if(battle.attack()) {  //begins the assault
+				    terrConquered = true;    //set player value that holds if a territory was conquered to true
+				    battle.terrAcquisition(territories);
+			    }
+            }
+            else {
+                Display::coloredText("Try again, dude... There are no territories you can attack from there.", red);
+            }
+        char c;
         cout << "Would you like to attack another territory? (y/n) :" ; 
         cin >> c;   //get if user would like to attack again if he can
         if(c=='n' || c =='N')
             break;
-	    
+        }
     }
 }
 void Game::fortifyPhase(Player p) {

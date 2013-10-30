@@ -92,6 +92,7 @@ bool Assault::attack() {
         defDice.clear();
 
         if(defTerr->getNumTroops() == 0) { //checks if there are any troops on defTerr
+            cout << defTerr->getName() << " has been conquered!";
             return true;
         }
         
@@ -139,8 +140,9 @@ void Assault::terrAcquisition(vector<Territory*> &terr) {
     
     if(attTerr->getNumTroops()>1) {
         int t = -1;
-        while(t > attTerr->getNumTroops() || t < 0) {
-            cout << "There are " << attTerr->getNumTroops()-1 << " troops you can move from " << attTerr->getName() << " to " << defTerr->getName() << ".\n";
+        while(t >= attTerr->getNumTroops() || t < 0) {
+            cout << "There are " << attTerr->getNumTroops() << " troops on " << attTerr->getName() << " and " << defTerr->getNumTroops() << " troop on " << defTerr->getName() << ".\n";
+            cout << "You can move up to " << attTerr->getNumTroops()-1 << " troops from " << attTerr->getName() << " to " << defTerr->getName() << ".\n";
             cout << "Enter the number of troops you would like to move: ";
             cin >> t;
         }

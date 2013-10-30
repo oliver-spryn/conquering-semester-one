@@ -1,0 +1,1 @@
+- make it so the player must something for his name.
