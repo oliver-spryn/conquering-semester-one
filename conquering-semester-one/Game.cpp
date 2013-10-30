@@ -143,13 +143,10 @@ void Game::play()
 			{
 				reinforcementsPhase(players[i]);    //reinforcements phase
 				attackPhase(players[i]);    //attack phase
+				fortifyPhase(players[i]);	//fortify phase
 				if (terrConquered) {
 					endTurn(players[i]);    //draw a card if a territory is conquered
 					terrConquered = false;
-
-					if (playerOwns(&players[i]).size() == 0) {
-						players[i].isActive = false;
-					}
 				}
 			}
 		}
@@ -273,17 +270,19 @@ void Game::attackPhase(Player p) {
 		    do {
 		        Display::setTextColor(p.getColor());
 			    cout << endl;
-			    cout << p.getName() << " choose a Territory to attack from: ";
+			    cout << p.getName() << " choose a Territory to attack from (or 0 to not): ";
 			    Display::resetTextColor();
 			    cin >> a;
+				if(a == 0)
+					return;
                 cout << '\n';
 
                 if (!cin || a<1 || a > territories.size()) {
-			        Display::coloredText("Try again, dude...", red);
+			        Display::coloredText("Try again", red);
 			        cout << endl;
 		        }
                 else if (attTerr[a-1]->getNumTroops() == 1) {
-                    Display::coloredText("Try again, dude... Not enough troops with which to attack", red);
+                    Display::coloredText("Try again, Not enough troops with which to attack", red);
 			        cout << endl;
 		        }
 
@@ -311,7 +310,7 @@ void Game::attackPhase(Player p) {
                     cout << '\n';
 
                     if (!cin || d<1 || d > territories.size()) {
-			            Display::coloredText("Try again, dude...", red);
+			            Display::coloredText("Try again", red);
 			            cout << endl;
 		            }
                 
@@ -327,13 +326,13 @@ void Game::attackPhase(Player p) {
 			    }
             }
             else {
-                Display::coloredText("Try again, dude... There are no territories you can attack from there.", red);
+                Display::coloredText("Try again, There are no territories you can attack from there.", red);
             }
         char c;
-        cout << "Would you like to attack another territory? (y/n) :" ; 
+        cout << "Would you like to attack another territory? (Y/N) :" ; 
         cin >> c;   //get if user would like to attack again if he can
         if(c=='n' || c =='N')
-            break;
+            return;
         }
     }
 }
@@ -342,24 +341,25 @@ void Game::fortifyPhase(Player p) {
 	int terrNumF, terrNumT, troopCount;
 
 	do {
-		Display::clear();
+		setTitle("Reinforcement Phase");
 
 		for(int i = 0; i < terrRet.size(); i++) {
 			cout << i+1 << ". " << terrRet[i]->getName() << " (Troops: " << terrRet[i]->getNumTroops() << ")" << endl;
 		}
 
-		cout << "Choose a Territory to relocate from: ";
+		cout << "Choose a Territory to relocate from (or 0 to not): ";
 		cin >> terrNumF;
-
+		if(terrNumF == 0)
+			return;
 	//Check to see if the input is valid
-		if (terrNumF <= 0 || terrNumF > terrRet.size() - 1) {
+		if (terrNumF < 0 || terrNumF > terrRet.size() - 1) {
 			continue;
 		}
 
 		cout << "Choose a number of troops to move: ";
 		cin >> troopCount;
 
-		if (troopCount < 0 && terrRet[terrNumF - 1]->getNumTroops() - 1 < troopCount) {
+		if (troopCount <= 0 || terrRet[terrNumF - 1]->getNumTroops() - 1 < troopCount) {
 			continue;
 		}
 
@@ -391,7 +391,7 @@ void Game::endTurn(Player p) {
 	Hand* h = p.getHand();
     //if it was, the player gets a card and sets value back to false
 	h->addCard(*deck);
-	delete h;												//**********may be an issue
+	//delete h;												//**********may be an issue
 	terrConquered = false;
 }
 

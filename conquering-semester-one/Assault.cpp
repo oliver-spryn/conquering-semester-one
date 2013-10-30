@@ -92,7 +92,7 @@ bool Assault::attack() {
         defDice.clear();
 
         if(defTerr->getNumTroops() == 0) { //checks if there are any troops on defTerr
-            cout << defTerr->getName() << " has been conquered!";
+            cout << defTerr->getName() << " has been conquered! ";
             return true;
         }
         
@@ -102,7 +102,7 @@ bool Assault::attack() {
 
 
         char c;
-        cout << "Would you like to attack again? (y/n) :" ; 
+        cout << "Would you like to attack again? (Y/N) :" ; 
         cin >> c;   //get if user would like to attack again if he can
         if(c=='n' || c =='N')
             break;
@@ -122,8 +122,8 @@ void Assault::terrAcquisition(vector<Territory*> &terr) {
     //check to see if that was the owner's last terr
     bool terrRemaining = false;     // holds if defTerr's owner has any other terr left
     for(int i = 0; i<terr.size(); i++) {
-        if(defTerr->getOwner() == terr[i]->getOwner() && defTerr != terr[i]) {  //checks if player has another terr
-            terrRemaining == true;                                              //sets true if the player does
+        if(defTerr->getOwner()->getColor() == terr[i]->getOwner()->getColor() && defTerr != terr[i]) {  //checks if player has another terr
+            terrRemaining = true;                                              //sets true if the player does
             break;
         }
     }
@@ -135,12 +135,12 @@ void Assault::terrAcquisition(vector<Territory*> &terr) {
 
     defTerr->setOwner(attTerr->getOwner());
 
-    attTerr->delTroop();
-    defTerr->addTroop();
+    //attTerr->delTroop();
+    //defTerr->addTroop();
     
     if(attTerr->getNumTroops()>1) {
         int t = -1;
-        while(t >= attTerr->getNumTroops() || t < 0) {
+        while(t >= attTerr->getNumTroops() || t <= 0) {
             cout << "There are " << attTerr->getNumTroops() << " troops on " << attTerr->getName() << " and " << defTerr->getNumTroops() << " troop on " << defTerr->getName() << ".\n";
             cout << "You can move up to " << attTerr->getNumTroops()-1 << " troops from " << attTerr->getName() << " to " << defTerr->getName() << ".\n";
             cout << "Enter the number of troops you would like to move: ";
