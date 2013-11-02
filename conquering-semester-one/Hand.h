@@ -4,6 +4,7 @@
 #include <sstream>
 #include <iomanip>
 #include "CardGroup.h"
+#include "Display.h"
 using std::vector;
 using std::string;
 using std::stringstream;
@@ -22,6 +23,7 @@ public:
 	void receiveHand(vector<Card> h);
 	bool hasTerrCard(string terrName);
 	void print();
+	string getLastCardName() { return hand.back().name; }
 
 private:
 	vector<Card> hand;

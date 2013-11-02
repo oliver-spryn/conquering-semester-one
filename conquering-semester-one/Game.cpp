@@ -1,4 +1,4 @@
-#include "Game.h"
+﻿#include "Game.h"
 #include "windows.h"
 using std::map;
 
@@ -125,7 +125,8 @@ void Game::setup()
 
 	for(int i = 0; i < numPlayers; ++i) {
 		Display::setTextColor(colors[i]);
-		cout << players[i].getName() << ", you have been assigned the " << colorNames[i] << " color" << endl;
+		cout << players[i].getName() << ":" << endl
+			 << "\tYou have been assigned the " << colorNames[i] << " color" << endl << endl;
 	}
 
 	Display::resetTextColor();
@@ -141,11 +142,11 @@ void Game::play()
 		for(i=currentPlayer; i<players.size(); i++) {
 			if(players[i].isActive)
 			{
-				reinforcementsPhase(players[i]);    //reinforcements phase
+				reinforcementsPhase(&players[i]);    //reinforcements phase
 				attackPhase(players[i]);    //attack phase
 				fortifyPhase(players[i]);	//fortify phase
 				if (terrConquered) {
-					endTurn(players[i]);    //draw a card if a territory is conquered
+					endTurn(&players[i]);    //draw a card if a territory is conquered
 					terrConquered = false;
 				}
 			}
@@ -224,28 +225,55 @@ void Game::firstTurn()
 	Display::clear();
 }
 
-void Game::reinforcementsPhase(Player p) {
-	vector<Territory*> terrRet = playerOwns(&p);
+void Game::reinforcementsPhase(Player* p) {
+	vector<Territory*> terrRet = playerOwns(p);
 	int troopCount = 0, terrCount = terrRet.size(), terrNum;
 	troopCount = std::floor(terrCount/3.0);
 	if(troopCount < 3)
 		troopCount = 3;
+
+//Card stuff?
+	if (p->getHand()->size() >= 3) {
+		setTitle("Turning in Cards");
+
+		if (p->getHand()->size() < 5) {
+			cout << "You have " << p->getHand()->size() << " cards. Would you like to turn some in now? (Y/N) ";
+
+			char c;
+			cin >> c;
+		
+			if(c=='y' || c =='Y') {
+				setTitle("Turning in Cards");
+
+				deck->addCard(*p->getHand());
+				p->turnCard++;
+			}
+		} else {
+			setTitle("Turning in Cards");
+			cout << "You have " << p->getHand()->size() << " cards. You must trade in at least one set.";
+
+			deck->addCard(*p->getHand());
+			p->turnCard++;
+		}
+
+		troopCount += TURN_IN_CARDS[p->turnCard - 1];
+	}
 	
 	while(troopCount > 0) {
 		setTitle("Reinforcement Phase");
-		while(p.getHand()->size() > 5)
-			deck->addCard(*p.getHand());
-		if(p.getHand()->size() >= 3)
-			deck->addCard(*p.getHand());
+		while(p->getHand()->size() > 5)
+			deck->addCard(*p->getHand());
+		if(p->getHand()->size() >= 3)
+			deck->addCard(*p->getHand());
 
 
 		for(int i = 0; i < terrRet.size(); i++) {
 			cout << i+1 << ". " << terrRet[i]->getName() << " (Troops: " << terrRet[i]->getNumTroops() << ")" << endl;
 		}
 
-		Display::setTextColor(p.getColor());
+		Display::setTextColor(p->getColor());
 		cout << endl;
-		cout << p.getName() << " choose a Territory to reinforce(Remaining: " << troopCount << "): ";
+		cout << p->getName() << ",  choose a territory to reinforce (remaining: " << troopCount << "): ";
 		Display::resetTextColor();
 		cin >> terrNum;
 		terrRet[terrNum-1]->addTroop();
@@ -269,7 +297,7 @@ void Game::attackPhase(Player p) {
 		    do {
 		        Display::setTextColor(p.getColor());
 			    cout << endl;
-			    cout << p.getName() << " choose a Territory to attack from (or 0 to not): ";
+			    cout << p.getName() << ", choose a territory to attack from (or 0 to not): ";
 			    Display::resetTextColor();
 			    cin >> a;
 				if(a == 0)
@@ -294,7 +322,7 @@ void Game::attackPhase(Player p) {
 		    for(int i = 0; i < territories.size(); i++) {
 			    if(territories[i]->getOwner()->getColor() != p.getColor() && attTerr[a-1]->isTangentTo(territories[i])) {
 				    defTerr.push_back(territories[i]);
-				    cout << defTerr.size() << ". " << territories[i]->getName() << " (Troops:" << territories[i]->getNumTroops() << ")" << endl;
+				    cout << defTerr.size() << ". " << territories[i]->getName() << " (Troops: " << territories[i]->getNumTroops() << ")" << endl;
 			    }
 		    }
             
@@ -303,7 +331,7 @@ void Game::attackPhase(Player p) {
 		        do {
 		            Display::setTextColor(p.getColor());
 			        cout << endl;
-			        cout << p.getName() << " choose a Territory to attack: ";
+			        cout << p.getName() << ", choose a Territory to attack: ";
 			        Display::resetTextColor();
 			        cin >> d;
                     cout << '\n';
@@ -322,13 +350,26 @@ void Game::attackPhase(Player p) {
                 if(battle.attack()) {  //begins the assault
 				    terrConquered = true;    //set player value that holds if a territory was conquered to true
 				    battle.terrAcquisition(territories);
-			    }
+			    } else {
+					cout << "Well... that didn't go so well. :(" << endl << endl
+						 << "  .-'---`-." << endl
+						 << ",'          `." << endl
+						 << "|             \\" << endl
+						 << "|              \\" << endl
+						 << "\           _  \\" << endl
+						 << ",\  _    ,'-,/-)\\" << endl
+						 << "( * \ \,' ,' ,'-)" << endl
+						 << " `._,)     -',-')" << endl
+						 << "   \/         ''/" << endl
+						 << "    )        / /" << endl
+						 << "   /       ,'-'" << endl;
+				}
             }
             else {
                 Display::coloredText("Try again, There are no territories you can attack from there.\n\n", red);
             }
         char c;
-        cout << "Would you like to attack another territory? (Y/N) :" ; 
+        cout << endl << "Would you like to attack another territory? (Y/N) : " ; 
         cin >> c;   //get if user would like to attack again if he can
 		Display::clear();
         if(c=='n' || c =='N')
@@ -348,7 +389,7 @@ void Game::fortifyPhase(Player p) {
 		}
 		cout << endl;
 		Display::setTextColor(p.getColor());
-		cout << "Choose a Territory to relocate from (or 0 to not): ";
+		cout << "Choose a territory to relocate from (or 0 to not): ";
 		Display::resetTextColor();
 		cin >> terrNumF;
 		if(terrNumF == 0)
@@ -358,7 +399,7 @@ void Game::fortifyPhase(Player p) {
 			continue;
 		}
 		Display::setTextColor(p.getColor());
-		cout << "Choose a number of troops to move: ";
+		cout << "Choose the number of troops to move: ";
 		Display::resetTextColor();
 		cin >> troopCount;
 
@@ -375,7 +416,7 @@ void Game::fortifyPhase(Player p) {
 			cout << i+1 << ". " << tangent[i]->getName() << " (Troops: " << tangent[i]->getNumTroops() << ")" << endl;
 		}
 		Display::setTextColor(p.getColor());
-		cout << "Choose a Territory to relocate to: ";
+		cout << "Choose a territory to relocate to: ";
 		Display::resetTextColor();
 		cin >> terrNumT;
 
@@ -391,11 +432,18 @@ void Game::fortifyPhase(Player p) {
 	} while(true);
 }
 
-void Game::endTurn(Player p) { 
-	Hand* h = p.getHand();
+void Game::endTurn(Player* p) {
+	setTitle("Drawing a Card");
+
+	Hand* h = p->getHand();
     //if it was, the player gets a card and sets value back to false
 	h->addCard(*deck);
 	terrConquered = false;
+
+	cout << "You drew one card from the deck and pulled " << h->getLastCardName()
+	     << ". You now have " << h->size() << (h->size() == 1 ? " card." : " cards.");
+
+	pause();
 }
 
 int Game::roll() {
@@ -488,7 +536,7 @@ void Game::initialTroopDistribution()
 			}
 			cout << endl;
 			Display::setTextColor(players[j].getColor());
-			cout << players[j].getName() << " choose a Territory to reinforce: ";
+			cout << players[j].getName() << ", choose a territory to reinforce: ";
 			Display::resetTextColor();
 
 			while(!validAnswer) {
@@ -499,7 +547,7 @@ void Game::initialTroopDistribution()
 				else {
 					Display::setTextColor(players[j].getColor());
 					cout << "invalid answer" << endl;
-					cout << players[j].getName() << " choose a Territory to reinforce: ";
+					cout << players[j].getName() << ", choose a territory to reinforce: ";
 					Display::resetTextColor();
 				}
 			}

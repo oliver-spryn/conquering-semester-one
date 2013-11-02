@@ -26,7 +26,7 @@ Assault::Assault(Territory* attTerr, Territory* defTerr) {
 
 bool Assault::attack() {
     int a, d;
-    while(attTerr->getNumTroops() > 1) {
+    while(true) {
         //gets number of attDice
         switch(attTerr->getNumTroops()) {
         case 0:
@@ -92,7 +92,7 @@ bool Assault::attack() {
         defDice.clear();
 
         if(defTerr->getNumTroops() == 0) { //checks if there are any troops on defTerr
-            cout << defTerr->getName() << " has been conquered! ";
+            cout << defTerr->getName() << " has been conquered!" << endl;
             return true;
         }
         
@@ -100,13 +100,16 @@ bool Assault::attack() {
 		cout << "\t" << attTerr->getName() << " has " << attTerr->getNumTroops() << '\n';
 		cout << "\t" << defTerr->getName() << " has " << defTerr->getNumTroops() << "\n\n";
 
-
-        char c;
-        cout << "Would you like to attack again? (Y/N) :" ; 
-        cin >> c;   //get if user would like to attack again if he can
-        if(c=='n' || c =='N')
-            break;
-        cout << "\n\n";
+		if (attTerr->getNumTroops() > 1) {
+			char c;
+			cout << "Would you like to attack again? (Y/N) :" ; 
+			cin >> c;   //get if user would like to attack again if he can
+			if(c=='n' || c =='N')
+				break;
+			cout << "\n\n";
+		} else {
+			break;
+		}
     }
     return false;
 }
@@ -142,7 +145,7 @@ void Assault::terrAcquisition(vector<Territory*> &terr) {
         int t = -1;
         while(t >= attTerr->getNumTroops() || t <= 0) {
             cout << "There are " << attTerr->getNumTroops() << " troops on " << attTerr->getName() << " and " << defTerr->getNumTroops() << " troop on " << defTerr->getName() << ".\n";
-            cout << "You can move up to " << attTerr->getNumTroops()-1 << " troops from " << attTerr->getName() << " to " << defTerr->getName() << ".\n";
+            cout << "You can move up to " << attTerr->getNumTroops()-1 << " troops from " << attTerr->getName() << " to " << defTerr->getName() << ".\n\n";
             cout << "Enter the number of troops you would like to move: ";
             cin >> t;
         }

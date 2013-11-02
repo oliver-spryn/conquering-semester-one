@@ -1,6 +1,6 @@
 #include "player.h"
 
-Player::Player(string playerName, int playerColor, Deck* playerCards) {
+Player::Player(string playerName, int playerColor, Deck* playerCards) : turnCard(0) {
 	allCards = playerCards;
 	name = playerName;
 	color = playerColor;

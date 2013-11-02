@@ -21,7 +21,8 @@ using std::vector;
 #ifndef GAME_H
 #define GAME_H
 
-const int INITIAL_TROOPS[5] = {5, 35, 30, 25, 20};
+const int INITIAL_TROOPS[5] = {40, 35, 30, 25, 20};
+const int TURN_IN_CARDS[18] = {4, 6, 8, 10, 12, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75};
 
 class Game
 {
@@ -32,10 +33,10 @@ public:
 	void play();
 	void firstTurn();
 
-	void reinforcementsPhase(Player p);
+	void reinforcementsPhase(Player* p);
 	void attackPhase(Player p);
 	void fortifyPhase(Player p);
-	void endTurn(Player p);         //draw a card if a territory is conquered
+	void endTurn(Player* p);         //draw a card if a territory is conquered
 private:
 	vector <Player> players;
 	Deck *deck;

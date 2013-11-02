@@ -1,4 +1,4 @@
-/**
+/**g
  * Assaults class
  *
  * This class is designed to manage assaults between two
@@ -22,6 +22,7 @@ using std::cin;
 #include <algorithm>
 using std::vector;
 using std::sort;
+using std::endl;
 
 class Assault {
 private : 
